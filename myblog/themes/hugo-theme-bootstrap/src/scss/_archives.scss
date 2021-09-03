@@ -1,0 +1,17 @@
+.archive {
+  ul {
+    padding-left: 2rem;
+  }
+
+  .post-title {
+    color: var(--hbs-secondary-text);
+
+    &:hover {
+      color: var(--hbs-accent);
+    }
+  }
+
+  .post-date {
+    color: var(--hbs-secondary-text);
+  }
+}

@@ -1,0 +1,36 @@
+{{- $img := false -}}
+{{- $link := "" -}}
+{{- $parts := split .filename "#" -}}
+{{- $filename := index $parts 0 -}}
+{{- $url := urls.Parse .filename -}}
+{{- if not $url.Scheme -}}
+  {{- $resource := .resources.GetMatch (strings.TrimPrefix "/" $filename) -}}
+  {{- if $resource -}}
+    {{- $img = $resource -}}
+    {{- $link = $resource.Permalink -}}
+  {{- else -}}
+    {{- $filename = path.Join "static" $filename -}}
+    {{- if fileExists $filename -}}
+      {{- $img = imageConfig $filename -}}
+      {{- $link = .filename | absURL }}
+    {{- else -}}
+      {{- errorf "no such image can be found in page resources and the static folder: %s" .filename -}}
+    {{- end -}}
+  {{- end -}}
+{{- else -}}
+  {{- $link = .filename -}}
+{{- end -}}
+{{- $className := default "img-fluid" .class -}}
+{{- $pos := "" -}}
+{{- if gt (len $parts) 1 -}}
+  {{- $pos = index $parts 1 -}}
+{{- end -}}
+{{- if eq $pos "center" -}}
+{{- $className = printf "%s %s" $className "mx-auto d-block" -}}
+{{- else if eq $pos "floatleft" -}}
+{{- $className = printf "%s %s" $className "float-start me-2" -}}
+{{- else if eq $pos "floatright" -}}
+  {{- $className = printf "%s %s" $className "float-end ms-2" -}}
+{{- end -}}
+<img class="{{ $className }}" alt="{{ .alt }}" src="{{ $link }}"
+  {{ if $img }} width="{{ $img.Width }}" height="{{ $img.Height }}"{{ end }} loading="lazy" />
