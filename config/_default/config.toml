@@ -1,7 +1,7 @@
-baseURL = "https://changlin-hsieh.github.io/"
+baseURL = "https://allen-hsieh1992.github.io/"
 title = "艾倫"
 theme = "hugo-theme-bootstrap"
-copyright = "Copyright © 2016-{year} Allen Hsieh. All Rights Reserved."
+copyright = "Copyright © 2021-{year} Allen Hsieh. All Rights Reserved."
 
 # Multilingual mode
 defaultContentLanguage = "zh-tw"
@@ -22,7 +22,7 @@ enableRobotsTXT = true
 
 enableEmoji = true
 
-# hasCJKLanguage = true # Turn on it if your content contains Chinese/Japanese/Korean Languages.
+hasCJKLanguage = true # Turn on it if your content contains Chinese/Japanese/Korean Languages.
 
 pygmentsUseClasses = true
 
@@ -30,8 +30,7 @@ pygmentsUseClasses = true
   hrefTargetBlank = true
 
 [outputs]
-  home = ["HTML", "RSS", "JSON"]
-
+  home = ["HTML", "JSON"]
 [taxonomies]
   category = "categories"
   series = "series"

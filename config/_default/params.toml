@@ -3,11 +3,11 @@
 # titleSeparator = "|" # Title separator. Default to "-".
 
 description = "An extreme fast, responsive and feature-rich blog theme for Hugo"
-keywords = "Hugo, Bootstrap, Blog Theme"
+keywords = "艾倫, AWS"
 # images = ["site-feature-image.jpg"]
 
 # logo = "images/logo.png" # Logo image. Default to "images/logo.webp".
-brand = "BOOTSTRAP"
+brand = "艾倫的開發心路歷程"
 # menusPosition = "left" # Menus position: right(default), left or center.
 
 palette = "blue" # Default palette. Optional.
@@ -28,7 +28,7 @@ googleAdsense = ""
 # toc = false # Disable TOC globally.
 # breadcrumb = false # Disable breadcrumb
 
- poweredBy = false # Whether to show powered by.
+poweredBy = false # Whether to show powered by.
 
 # readingTime = false # Whether to display the reading time.
 # postDate = false # Whether to display the post date in the post meta section.
@@ -81,7 +81,7 @@ titleCase = true # Capitalized title.
   # sa = true # Adaptations must be shared under the same terms.
 
 [utterances]
-  repo = "razonyang/hugo-theme-bootstrap-comments" # Replace with your repository.
+  repo = "allen-hsieh1992/allen-hsieh1992.github.io" # Replace with your repository.
   #issueTerm = "pathname" # pathname, url, title, og:title
   #label = "comment"
   # By default, light and dark mode correspond to github-light and github-dark, respectively.
@@ -101,9 +101,9 @@ titleCase = true # Capitalized title.
     # distance = 100
     # useExtendedSearch = true
 
-[reward]
-  alipay = "images/reward/alipay.png"
-  wechat = "images/reward/wechat.png"
+#[reward]
+#  alipay = "images/reward/alipay.png"
+#  wechat = "images/reward/wechat.png"
 
 #[share]
   #addThis = "" # AddThis pubid.
