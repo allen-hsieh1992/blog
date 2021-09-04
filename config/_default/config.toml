@@ -1,5 +1,5 @@
 baseURL = "https://allen-hsieh1992.github.io/"
-title = "艾倫"
+title = "艾倫的開發心路歷程"
 theme = "hugo-theme-bootstrap"
 copyright = "Copyright © 2021-{year} Allen Hsieh. All Rights Reserved."
 

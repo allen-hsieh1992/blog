@@ -2,7 +2,7 @@
 
 # titleSeparator = "|" # Title separator. Default to "-".
 
-description = "An extreme fast, responsive and feature-rich blog theme for Hugo"
+description = "艾倫的學習筆記"
 keywords = "艾倫, AWS"
 # images = ["site-feature-image.jpg"]
 
@@ -14,7 +14,7 @@ palette = "blue" # Default palette. Optional.
 # palettes = ["blue", "blue gray", "brown"] # Available palettes. Default to ALL.
 # palettes = [] # Disable palette switcher.
 
-# color = "dark" # light, dark or dynamic. Default to dynamic.
+color = "dark" # light, dark or dynamic. Default to dynamic.
 
 # fullWidth = true # Full width.
 # fixedHeader = false # Turn on/off fixed header.
@@ -109,10 +109,10 @@ titleCase = true # Capitalized title.
   #addThis = "" # AddThis pubid.
 
 [fontSize] # Comment or remove this settings to disable font size switcher.
-  # extraSmall = ".8rem"
-  # small = ".9rem"
-  # large = "1.1rem"
-  # extraLarge = "1.2rem"
+  extraSmall = ".8rem"
+  small = ".9rem"
+  large = "1.1rem"
+  extraLarge = "1.2rem"
   
 # Katex options, see also https://katex.org/docs/autorender.html and https://katex.org/docs/options.html
 [katex]
