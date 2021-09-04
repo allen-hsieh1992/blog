@@ -1,7 +1,7 @@
 +++ 
 title = "AWS EC2 Associate Certification Note"
 author = "Allen Hsieh"
-description = "AWS EC2 Associate Certification 學習筆記"
+description = "準備AWS Assoicate Certifcate 的EC2 筆記"
 featured = true
 categories = ["AWS"]
 tags = [
@@ -144,19 +144,20 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
 ---
 - Cluster : 所有的 Instance 放在同一個 AZ ，以提供更快的網路速度
 - Spread : 將所有的 Instance 放在不同的實體硬體，一個 AZ 最多七個 Instance
-- Partitioned : 將 Ec2 Instance 按照自己的邏輯分開(partition) ，每個 AZ 上限七個 partition 。
+- Partitioned : 將 Ec2 Instance 按照自己的邏輯分開(partition) ，每個 AZ 上限七個 partition
 
 
 ## Storage
-
-| 特徵\Type| EBS| Instance Store|
-|----|----|----|
-|啟用時間| 約一分鐘	|正常少於五分鐘|
-|數據保存|預設: 當 Ec2 被 Terminate 時， EBS 也會被砍掉。但可以設定不砍掉，並存留現在有的資料| 資料會隨著 Ec2 被被 Terminate 時一起刪除。|
-|修改設定	|在 EC2 停止時可以被修改	|固定的不能修改|
-| SnapShot|支援 snapshot	|不支援 snapshot
+---
+| 特徵\Type| EBS                                                                               | Instance Store                            |
+|----------|-----------------------------------------------------------------------------------|-------------------------------------------|
+|啟用時間  | 約一分鐘	                                                                       | 正常少於五分鐘                            |
+|數據保存  |預設: 當 Ec2 被 Terminate 時， EBS 也會被砍掉。但可以設定不砍掉，並存留現在有的資料| 資料會隨著 Ec2 被被 Terminate 時一起刪除  |
+|修改設定  |在 EC2 停止時可以被修改  	                                                       | 固定的不能修改                            |
+|SnapShot  |支援 snapshot	                                                               | 不支援 snapshot                           |
 
 ## Monitor
+---
 - AWS 提供的 Metrics 
   - 包含資訊
      - CPU Utilization
@@ -177,7 +178,7 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
 ---
 - Elastic IP address : 固定 IPv4 Address, 一個 Region 限制五個
 - Enhanced Network 
-	- Elastic Network Adapter: 可以提升網路數度至  100 Gbps
+      - Elastic Network Adapter: 可以提升網路數度至  100 Gbps
       - Virtual Function: 可以提升網路數度至 10 Gbps
 - Elastic Fabric Adapter : 高效能運算使用
 
@@ -191,7 +192,7 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
     - 達到 EBS Volume Limit
     - EBS snapshot 壞掉了
     - EBS 有加密，但沒有 KMS 權限
-    -  AMI 有問題
+    - AMI 有問題
 
     
 ### 不能 SSH 到 EC2 
@@ -202,7 +203,7 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
     - NACL 沒有設定對
     - Route Table 沒有設定對
     - 沒有 Public IPv4 
-    -  CPU Loading 太高，機器無法回應
+    - CPU Loading 太高，機器無法回應
 
 
 	
