@@ -6,7 +6,7 @@ description = "艾倫的學習筆記"
 keywords = "艾倫, AWS, Allen"
 # images = ["site-feature-image.jpg"]
 
-# logo = "images/logo.png" # Logo image. Default to "images/logo.webp".
+logo = "images/logo.png" # Logo image. Default to "images/logo.webp".
 brand = "艾倫的開發心路歷程"
 # menusPosition = "left" # Menus position: right(default), left or center.
 

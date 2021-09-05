@@ -1,7 +1,7 @@
 name = "Allen Hsieh"
 avatar = "images/icon.gif" # Avatar image. Default to "images/profile.webp".
-bio = "Backend Engineer"
-company = "Yahoo!"
+bio = "Senior Software Engineer"
+company = "Secret Company"
 location = "Taiwan"
 # about = "https://domain.tld" # The external about page. The internal about page will be used if not set.
 

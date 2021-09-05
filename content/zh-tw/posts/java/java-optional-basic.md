@@ -21,7 +21,7 @@ images = ["images/java.jpeg"]
 ## 建立Optional 物件
 ---
 
-大家認為下面的Example1 運行的結果會是什麼樣的呢？
+大家認為下面的 Example1 運行的結果會是什麼樣的呢？
 
 ```java
 import java.util.Optional;
@@ -35,7 +35,7 @@ public class Example1 {
 }
 ```
 
-執行結果會是 “I am Optional String”，這邊可以看到 line 6 透過 of() method 建立了 一個 Optional 的物件。但如果 sentence 是 null 的時候，會怎麼樣呢？結果會是 Null Pointer Exception! 因為 of() method 這邊所帶入的 Value 必須是 non-null的，所以建議大家在使用 Optional 時，應該避開使用 of() method，而是使用 ofNullable() method。
+執行結果會是 "I am Optional String"，這邊可以看到 line 6 透過 of() method 建立了 一個 Optional 的物件。但如果 sentence 是 null 的時候，會怎麼樣呢？結果會是 Null Pointer Exception! 因為 of() method 這邊所帶入的 Value 必須是 non-null的，所以建議大家在使用 Optional 時，應該避開使用 of() method，而是使用 ofNullable() method。
 
 現在我們將 Example1 中的 sentence 改成 null 並且使用 ofNullAble() method 來運行，這時大家覺得結果是怎樣呢？
 
@@ -51,7 +51,7 @@ public class Example2 {
 }
 ```
 
-大家是否會認為跟 Example1 一樣，會列印出””I am Optional String”？但實際執行的結果會是 NoSuchElementException : No value present，因為在 call get() method 時內部檢查 Value 是否存在，所以這邊建議在實際使用中，不要使用 get() method，除非你能確認 Value 一定不等於 null。
+大家是否會認為跟 Example1 一樣，會列印出"I am Optional String"？但實際執行的結果會是 NoSuchElementException : No value present，因為在 call get() method 時內部檢查 Value 是否存在，所以這邊建議在實際使用中，不要使用 get() method，除非你能確認 Value 一定不等於 null。
 這邊要順便介紹 Optional 中特別的物件: Optional.empty() ，這邊要特別注意 Optional empty 還是 Optional 物件，只是裡面的 value 是 null，所以 Optional empty 跟 null 是不同的東西。
 
 ## Optional 安全取得Value
@@ -126,7 +126,7 @@ public class Example6 {
 ## Optional 安全執行特定函式
 ---
 
-在之前的Example當中，我們只是單純的想要正確的執行 System.out.println，這邊介紹ifPresent()。
+在之前的例子中，我們只是單純的想要正確的執行 System.out.println，這邊介紹ifPresent()。
 
 ```java
 import java.util.Optional;
@@ -164,7 +164,7 @@ public class Example8 {
 }
 ```
 
-ifPresent() 只能在 Optional 有 value 時執行，有時候我們也希望如果 Optional 有 value時執行 函式A，沒有值時 執行函式 B，這時我們就可以透過 ifPresentOrElse()
+ifPresent() 只能在 Optional 有 value 時執行，有時候我們也希望如果 Optional 有 value 時執行 函式 A，沒有值時 執行函式 B，這時我們就可以透過 ifPresentOrElse()
 
 ```java
 import java.util.Optional;
@@ -212,7 +212,7 @@ Optional[I am Optional String]
 */
 ```
 
-Map: 如果 Optional 的 Value 有值，這邊才會執行你所定義的 Mapping Function，如果沒有就直接返回 Optional Empty。 我在工作中，經常需要將DTO 轉換成 Response 物件，會使用 Map 來使用
+Map: 如果 Optional 的 Value 有值，這邊才會執行你所定義的 Mapping Function，如果沒有就直接返回 Optional Empty。 我在工作中，經常需要將 DTO 轉換成 Response 物件，會使用 Map 來使用
 
 ```java
 import lombok.AllArgsConstructor;

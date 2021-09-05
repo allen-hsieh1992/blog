@@ -1,7 +1,7 @@
 +++ 
-title = "AWS EC2 Associate Certification Note"
+title = "EC2 Associate Certification Note"
 author = "Allen Hsieh"
-description = "準備AWS Assoicate Certifcate 的EC2 筆記"
+description = "準備 AWS Associate Certificate 時的 EC2 筆記"
 featured = true
 categories = ["AWS"]
 tags = [
@@ -9,7 +9,7 @@ tags = [
     "EC2",
 ]
 date = "2021-09-03" 
-aliases = ["aws-ec2-associate-certification-note"]
+aliases = ["ec2-associate-certification-note"]
 images = ["images/aws.jpeg"]
 +++
 ## EC2 Purchase Option
