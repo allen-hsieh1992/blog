@@ -14,17 +14,17 @@ images = ["images/aws.jpeg"]
 +++
 
 - Route53 是 AWS 的 Domain Name System (DNS)，名字中有 53 的原因是因為 DNS 的 Port 是 53。
--  Route53 也是一個 DNS Register ，可以在上面購買 Domain Name 
--  TTL (Time to Live) : 單位為秒，告訴 Browser 去 Cache Response 的 Record 多少時間。
--  主要 Component 
+- Route53 也是一個 DNS Register ，可以在上面購買 Domain Name 
+- TTL (Time to Live) : 單位為秒，告訴 Browser 去 Cache Response 的 Record 多少時間。
+- 主要 Component 
   - Hosted Zone 
     - 包含所有 Record 資訊
     - 會自動建立 Name Server 和 SOA records
     - Public hosted Zone  :  解析互聯網的 Request
     - Private hosted Zone :  解析Amazon上內部的 Request
       -  VPC 需要設定 enableDnsHostnames & enableDnsSupport
-    - Name Server
-      - 主要轉換 Hostname to IP
+  - Name Server
+    - 主要轉換 Hostname to IP
 
 ## DNS Basic Records
 ---
@@ -41,7 +41,7 @@ images = ["images/aws.jpeg"]
 
 - Alias V.S. Cname
 
-| 功能       | Alias                                                                |Cname                               |
+| 功能       | Cname                                                                |Alias                               |
 | -----------|----------------------------------------------------------------------|------------------------------------|
 | Example    | app.domain.com => xxx.otherDomain.com                                | app.domain.com => elbxx.amazon.com |
 | ROOT DOMAIN| 只能是 non root domain Ex: 不可以是 domain.com => xxx.otherDomain.com| non root & root domain 都可以      |
