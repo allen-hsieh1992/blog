@@ -1,7 +1,7 @@
 +++ 
 title = "EC2 Associate Certification Note"
 author = "Allen Hsieh"
-description = "準備 AWS Associate Certificate 時的 EC2 筆記"
+description = "準備 AWS Associate Certificate 時 EC2 相關的筆記，如果有資訊太舊或不正確請留言給我謝謝。"
 featured = true
 categories = ["AWS"]
 tags = [
@@ -205,6 +205,3 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
     - 沒有 Public IPv4 
     - CPU Loading 太高，機器無法回應
 
-
-	
-	 

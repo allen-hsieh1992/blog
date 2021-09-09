@@ -1,7 +1,7 @@
 +++
 title = "Route53 Associate Certification Note"
 author = "Allen Hsieh"
-description = "準備 AWS Associate Certificate 時的 Route53 筆記"
+description = "準備 AWS Associate Certificate 時 Route53 相關的筆記，如果有資訊太舊或不正確請留言給我謝謝。"
 featured = true
 categories = ["AWS"]
 tags = [

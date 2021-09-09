@@ -30,16 +30,16 @@ googleAdsense = ""
 
 poweredBy = false # Whether to show powered by.
 
-# readingTime = false # Whether to display the reading time.
+readingTime = false # Whether to display the reading time.
 # postDate = false # Whether to display the post date in the post meta section.
 
-# featuredPostCount = 10 # The number of featured posts shown in sidebar. Turn off by setting it to false.
+featuredPostCount = false # The number of featured posts shown in sidebar. Turn off by setting it to false.
 # recentPostCount = 10 # The number of recent posts shown in sidebar. Turn off by setting it to false.
 # relatedPostCount = 10 # The number of related posts. Turn off by setting it to false.
 # categoryCount = 10 # The number of categories shown in sidebar. Turn off by setting it to false.
 # tagCount = 10 # The number of tags shown in sidebar. Turn off by setting it to false.
 # seriesCount = 10 # The number of series shown in sidebar. Turn off by setting it to false.
-# taxonomyPostCount = 5 # The number of posts of taxonomy. Turn off by setting it to false.
+# taxonomyPostCount = false # The number of posts of taxonomy. Turn off by setting it to false.
 
 # Custom CSS and JS
 customCSS = ["css/custom.css"]
@@ -58,7 +58,7 @@ titleCase = true # Capitalized title.
   # excerptMaxLength = 120
 
 [archive]
-  paginate = 8 # Archive pagination. Default to 100.
+  #paginate = 8 # Archive pagination. Default to 100.
   # dateFormat = "01-02" # Archive date format. Default to "Jan 2".
 
 [analytics]
