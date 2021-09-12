@@ -29,6 +29,7 @@ images = ["images/aws.jpeg"]
 - 也可以根據 CloudFormation Stack 來 Grouping
 
 ## Documents
+---
 - 一個 Documents 定義一些 Parameters & Actions (執行一些 commands)
 - Documents 可以是 Json 或 Yaml 格式
 - 兩種Type Run Command (Script) & Automation (AWS API)
@@ -143,3 +144,12 @@ images = ["images/aws.jpeg"]
   - Automation 
   - Lambda
   - Step Function
+
+## Session Manager
+---
+- 可以建立安全的 Shell 到 EC2 or On-premises，不需要開始 SSH (port 22)
+- 會 Log 所有的指令
+- 支援 Windows 、 Linux 或 MacOS 
+- Session Log 可以存在 S3 或 CloudWatch 
+- 可以透過IAM 限制哪個 User/Group 可以連到哪個 Instance 或是 Reousrce Tag 
+
