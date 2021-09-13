@@ -7,6 +7,8 @@ categories = ["AWS"]
 tags = [
     "AWS",
     "LAMBDA",
+    "CLOUDFORMATION",
+    "SAM",
 ]
 date = "2021-07-03"
 aliases = ["build-aws-lambda-hello-world-function-by-sam"]

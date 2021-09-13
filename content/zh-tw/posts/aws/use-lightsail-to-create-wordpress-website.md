@@ -8,6 +8,7 @@ tags = [
     "AWS",
     "LIGHTSAIL",
     "ROUTE53",
+    "WORDPRESS",
 ]
 date = "2021-07-04"
 aliases = ["use-lightsail-to-create-wordpress-website"]
