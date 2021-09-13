@@ -162,6 +162,8 @@ As the example site shown, the configuration are separated into multiple files, 
 | `readingTime` | Boolean | `true` | Whether to display the reading time.
 | `postDate` | Boolean | `true` | Whether to display the post date in the post meta section.
 | `math` | Boolean | `false` | Whether to enable math globally.
+| `diagram` | Boolean | `false` | Whether to enable diagram globally.
+| `mermaid` | Object | - | [Mermaid Configuration](https://mermaid-js.github.io/mermaid/#/Setup?id=configuration).
 | `logo` | String | `images/logo.webp` | Logo image.
 | `brand` | String | - | Brand text.
 | `menusPosition` | String | `right` | Menus position: `right`, `left`, `center`.
@@ -255,6 +257,7 @@ As the example site shown, the configuration are separated into multiple files, 
 | `comment` | Boolean | `true` | Whether to enable comments. It won't work if `comment` has been disabled globally.
 | `toc` | Boolean | `true` | Whether to enable TOC. It won't work if `toc` has been disabled globally.
 | `math` | Boolean | `false` | Whether to enable math.
+| `diagram` | Boolean | `false` | Whether to enable diagram.
 | `reward` | Boolean | `true` | Whether to enable reward.
 | `breadcrumb` | Boolean | `true` | Whether to enable breadcrumb.
 | `readingTime` | Boolean | `true` | Whether to display the reading time.

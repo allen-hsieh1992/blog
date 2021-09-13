@@ -42,7 +42,8 @@ featuredPostCount = false # The number of featured posts shown in sidebar. Turn 
 # taxonomyPostCount = false # The number of posts of taxonomy. Turn off by setting it to false.
 
 # Custom CSS and JS
-customCSS = ["css/custom.css"]
+#customCSS = ["css/custom.css"]
+customCSS = []
 customJS = []
 
 # tocWordCount = 280 # TOC is displayed only if the post's word count exceeds this value.
@@ -66,7 +67,7 @@ titleCase = true # Capitalized title.
 
 # Site verification
 [siteVerification]
-  google = "Sf-qkO5orrgOeV-PPtNDwj-q9SImUEreZBWefpkl1dY"
+  google = "_gKaAX8cSqcX1v_ahNmM-xC-MSd7O5dxXyyxkHemEVw"
   bing = ""
   baidu = ""
   baiduUnion = "" # Baidu Union

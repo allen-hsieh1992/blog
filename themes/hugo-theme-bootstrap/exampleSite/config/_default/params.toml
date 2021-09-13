@@ -27,6 +27,7 @@ googleAdsense = ""
 # math = true # Enable math globally.
 # toc = false # Disable TOC globally.
 # breadcrumb = false # Disable breadcrumb
+# diagram = true
 
 # poweredBy = false # Whether to show powered by.
 
@@ -152,3 +153,6 @@ titleCase = true # Capitalized title.
     left = "\\["
     right = "\\]"
     display = true
+
+[mermaid] # See https://mermaid-js.github.io/mermaid/#/Setup?id=configuration
+  theme = "dark"

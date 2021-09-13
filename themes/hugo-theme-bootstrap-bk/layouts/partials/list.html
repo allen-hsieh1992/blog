@@ -1,0 +1,28 @@
+{{- $pages := (.Paginate .RegularPagesRecursive).Pages -}}
+<div class="container">
+  {{- if .IsHome -}}
+    {{- $sections := default (slice "posts") .Site.Params.mainSections -}}
+    {{- $pages = where (.Paginate .Site.RegularPages).Pages "Type" "in" $sections -}}
+  {{- else -}}
+  {{- partial "breadcrumb" . -}}
+  {{- partial "sections" . -}}
+  {{- end -}}
+  {{- partial "hooks/list-begin" . -}}
+  <div class="posts mb-4">
+  {{- range $pages -}}
+    <article class="post row surface">
+      <h2 class="post-title mb-4"><a href="{{ .Permalink }}">{{ partial "helpers/title" . }}</a></h2>
+      {{- partial "post/meta" . -}}
+      <div class="post-summary mb-3">
+        {{ if  .Params.Images }}
+        {{ partial "helpers/image" (dict "filename" (index .Params.Images 0) "alt" .Title "class" "img-fluid" "resources" .Resources) }}
+        {{ end }}
+        {{ partial "post/excerpt" . }}
+      </div>
+    </article>
+  {{- end -}}
+  </div>
+  {{- partial "hooks/list-end" . -}}
+  {{- partial "pagination" . -}}
+</div>
+
