@@ -5,8 +5,7 @@ description = "準備 AWS Certificate 時 CodeDeploy 相關的筆記，如果有
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "CODEDEPLOY",
+    "CodeDeploy",
 ]
 date = "2021-09-18"
 aliases = ["codedeploy-certification-note"]

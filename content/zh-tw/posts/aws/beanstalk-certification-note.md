@@ -5,8 +5,7 @@ description = "準備 AWS Certificate 時 Beanstalk 相關的筆記，如果有�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "BEANSTALK",
+    "Beanstalk",
 ]
 date = "2021-09-12"
 aliases = ["beanstalk-certification-note"]

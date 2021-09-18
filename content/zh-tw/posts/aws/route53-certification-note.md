@@ -5,8 +5,7 @@ description = "準備 AWS Certificate 時 Route53 相關的筆記，如果有資
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "ROUTE53",
+    "Route53",
 ]
 date = "2021-09-05"
 aliases = ["route53-certification-note"]

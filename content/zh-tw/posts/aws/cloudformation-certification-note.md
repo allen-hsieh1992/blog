@@ -5,8 +5,7 @@ description = "準備 AWS Certificate 時 CloudFormation 相關的筆記，如�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "CLOUDFORMATION",
+    "CloudFormation"
 ]
 date = "2021-09-12"
 aliases = ["cloudformation-certification-note"]

@@ -5,9 +5,8 @@ description = "以前當我第一次接觸 AWS Lambda Function 時，是在上 A
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "LAMBDA",
-    "CLOUDFORMATION",
+    "Lambda",
+    "CloudFormation",
     "SAM",
 ]
 date = "2021-07-03"

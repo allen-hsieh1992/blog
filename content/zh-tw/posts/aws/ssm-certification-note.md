@@ -5,8 +5,7 @@ description = "準備 AWS Certificate 時 SSM 相關的筆記，如果有資訊�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "SSM",
+    "SystemsManager",
 ]
 date = "2021-09-09"
 aliases = ["ssm-certification-note"]

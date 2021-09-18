@@ -5,9 +5,8 @@ description = "在大學時間，我曾經使用過 WordPress.com 只是最後�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "LIGHTSAIL",
-    "ROUTE53",
+    "Lightstail",
+    "Route53"
     "WORDPRESS",
 ]
 date = "2021-07-04"

@@ -5,7 +5,6 @@ description = "準備 AWS Certificate 時 S3 相關的筆記，如果有資訊�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
     "S3",
 ]
 date = "2021-09-12"

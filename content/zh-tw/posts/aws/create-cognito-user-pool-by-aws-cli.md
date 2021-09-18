@@ -5,8 +5,7 @@ description = "個人用戶管理對於許多網站 或 App 都是不可缺少�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "COGNITO",
+    "Cognito",
 ]
 date = "2021-07-11"
 aliases = ["create-cognito-user-pool-by-aws-cli"]

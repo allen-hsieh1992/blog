@@ -5,8 +5,7 @@ description = "準備 AWS Certificate 時 CodeCommit 相關的筆記，如果有
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
-    "CODECOMMIT",
+    "CodeCommit",
 ]
 date = "2021-09-13"
 aliases = ["codecommit-certification-note"]

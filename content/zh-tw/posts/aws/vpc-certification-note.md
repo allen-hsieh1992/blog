@@ -5,7 +5,6 @@ description = "準備 AWS Certificate 時 VPC 相關的筆記，如果有資訊�
 featured = true
 categories = ["AWS"]
 tags = [
-    "AWS",
     "VPC",
 ]
 date = "2021-09-07"
