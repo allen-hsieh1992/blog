@@ -23,25 +23,25 @@ images = ["images/aws.jpeg"]
 ---
 - Parameters : 當要建立 Stack ，可以由外面設定動態參數
     - 可設定資訊
-    - Type: String, Number, CommaDelimitedList, List<Type>, AWS Parameter
-    - Description
-    - Constraints
-    - ConstraintDescription
-    - Min/MaxLength
-    - Defaults
-    - AllowedValues (array)
-    - AllowedPattern (regular expression)
-    - NoEcho(Boolean)
-
-```YAML
-VpcId: !Ref MyVPC
-
-Parameters:
-  InstanceType:
-    Type: 'AWS::SSM::Paramter::Value<String>'
-    Default: /EC2/InstanceType
-#there is public SSM parameters by AWS
-```
+        - Type: String, Number, CommaDelimitedList, List<Type>, AWS Parameter
+        - Description
+        - Constraints
+        - ConstraintDescription
+        - Min/MaxLength
+        - Defaults
+        - AllowedValues (array)
+        - AllowedPattern (regular expression)
+        - NoEcho(Boolean)
+    - 可以從 SSM 取得資料
+    ```YAML
+    VpcId: !Ref MyVPC
+    
+    Parameters:
+      InstanceType:
+        Type: 'AWS::SSM::Paramter::Value<String>'
+        Default: /EC2/InstanceType
+    #there is public SSM parameters by AWS
+    ```
 - Conditions : 建立資源的條件
   - intrinsic function : Fn::And, Fn::Equals, Fn::If, Fn::Not, Fn::Or
 
@@ -173,7 +173,7 @@ Resource:
         echo "Hello World from user data" > /var/www/html/index.html 
 ``` 
 
-## cfn-init &  cfn-signal
+## cfn-init &  cfn-signal & cfn-hup
 ---
 - AWS::CloudFormation::Init 目的是讓 EC2 的設定可讀性更高， 需要放在 metadata section
 - init 的 log 會寫在 /var/log/cfn-init.log
@@ -185,7 +185,7 @@ Resource:
     - 確認 Script 是否有安裝
     - 可以disable rollback，進機器看  /var/log/cfn-init.log 和 /var/log/cloud-init-output.log
     - 由於 Signal 必須透過 Internet 通知 CloudFormation ，確認 EC2 可以 Access Internet. 
-
+- cfn-hup : 是一個 daemon 去檢查是否有 metadata 要更新， Default Interval 是 15 分鐘
 
 ```YAML
 Resource:
@@ -199,6 +199,9 @@ Resource:
         yum update -y aws-cfn-bootstrap
         # Start cfn-init
         /opt/aws/bin/cfn-init -s ${AWS::StackId} -r MyInstance --region ${AWS::Region} || error_exit 'Failed to run cfn-init' 
+        
+        # start the cfn-hup daemon
+        /opt/aws/bin/cfn-hup || error_exit "Failed to start cfn_hup"
         # Start cfn-signal to the wait condition
         /opt/aws/bin/cfn-signal -e $? --stack ${AWS::StackId} --resource SampleWaitCondition --region ${AWS::Region}
 
@@ -214,6 +217,25 @@ Metadata:
         content: |
           <h1>Hello World from Ec2 Instance</h1>
         mode: '000644'
+        "/etc/cfn/cfn-hup.conf":
+        content: !Sub |
+            [main]
+            stack=${AWS::StackId}
+            region=${AWS::Region}
+            interval=2
+        mode: "000400"
+        owner: "root"
+        group: "root"
+
+        "/etc/cfn/hooks.d/cfn-auto-reloader.conf":
+        content: !Sub |
+            [cfn-auto-reloader-hook]
+            triggers=post.update
+            path=Resources.WebServerHost.Metadata.AWS::CloudFormation::Init
+            action=/opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource WebServerHost --region ${AWS::Region}
+        mode: "000400"
+        owner: "root"
+        group: "root"
       commands:
         hello:
           command: "echo 'hello world'"
@@ -230,6 +252,7 @@ SampleWaitCondition:
       Count:2 #要兩個成功的 Signal
     Type: AWS::CoudFormation::WaitCondition
 ```
+
 
 ## CloudFormation Rollback 
 ---
@@ -414,3 +437,130 @@ Resources:
 - Trust Account 可以更新 StackSets
 - 每次更動 StackSets 設定，全部的 Stack 都會被更新
 - 可以刪除整個 StackSets 或單獨刪除 StackSets 裡面的一個 Stack
+
+## Custom Resource
+---
+- 由於不是所有的 AWS Resource, CloudFormation 都有支援，所以有時需要透過 Lambda Function 去 call api 
+- 當 CloudFormation 在 Create, Update or delete 時都會觸發 Lambda Function 
+
+### Delete S3 Custom Resource
+- Lambda Function 
+
+```YAML
+Resources: 
+  LambdaExecutionRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+            - lambda.amazonaws.com
+          Action:
+          - sts:AssumeRole
+      Path: "/"
+      Policies:
+      - PolicyName: root
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - "s3:*"
+            Resource: "*"
+          - Effect: Allow
+            Action:
+            - "logs:CreateLogGroup"
+            - "logs:CreateLogStream"
+            - "logs:PutLogEvents"
+            Resource: "*"
+
+  EmptyS3BucketLambda: 
+    Type: "AWS::Lambda::Function"
+    Properties: 
+      Handler: "index.handler"
+      Role: 
+        Fn::GetAtt: 
+          - "LambdaExecutionRole"
+          - "Arn"
+      Runtime: "python3.7"
+      # we give the function a large timeout 
+      # so we can wait for the bucket to be empty
+      Timeout: 600
+      Code: 
+        ZipFile: |
+          #!/usr/bin/env python
+          # -*- coding: utf-8 -*-
+          import json
+          import boto3
+          from botocore.vendored import requests
+
+          def handler(event, context):
+              try:
+                  bucket = event['ResourceProperties']['BucketName']
+
+                  if event['RequestType'] == 'Delete':
+                      s3 = boto3.resource('s3')
+                      bucket = s3.Bucket(bucket)
+                      for obj in bucket.objects.filter():
+                          s3.Object(bucket.name, obj.key).delete()
+
+                  sendResponseCfn(event, context, "SUCCESS")
+              except Exception as e:
+                  print(e)
+                  sendResponseCfn(event, context, "FAILED")
+
+
+          def sendResponseCfn(event, context, responseStatus):
+              response_body = {'Status': responseStatus,
+                              'Reason': 'Log stream name: ' + context.log_stream_name,
+                              'PhysicalResourceId': context.log_stream_name,
+                              'StackId': event['StackId'],
+                              'RequestId': event['RequestId'],
+                              'LogicalResourceId': event['LogicalResourceId'],
+                              'Data': json.loads("{}")}
+
+              requests.put(event['ResponseURL'], data=json.dumps(response_body))
+
+Outputs:
+  StackSSHSecurityGroup:
+    Description: The ARN of the Lambda function that empties an S3 bucket
+    Value: !GetAtt EmptyS3BucketLambda.Arn
+    Export:
+      Name: EmptyS3BucketLambda
+```
+
+- Custom Resource with lambda function
+```YAML
+---
+AWSTemplateFormatVersion: '2010-09-09'
+
+Resources:
+  myBucketResource:
+    Type: AWS::S3::Bucket
+
+  LambdaUsedToCleanUp:
+    Type: Custom::cleanupbucket
+    Properties:
+      ServiceToken: !ImportValue EmptyS3BucketLambda
+      BucketName: !Ref myBucketResource
+```
+
+### CloudFormation Request Example
+
+```JSON
+{
+   "RequestType" : "Create",
+   "ResponseURL" : "http://pre-signed-S3-url-for-response",
+   "StackId" : "arn:aws:cloudformation:us-west-2:123456789012:stack/stack-name/guid",
+   "RequestId" : "unique id for this create request",
+   "ResourceType" : "Custom::TestResource",
+   "LogicalResourceId" : "MyTestResource",
+   "ResourceProperties" : {
+      "Name" : "Value",
+      "List" : [ "1", "2", "3" ]
+   }
+}
+```

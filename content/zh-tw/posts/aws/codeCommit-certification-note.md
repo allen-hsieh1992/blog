@@ -81,3 +81,8 @@ aws codecommit create-approval-rule-template \
     ]
 }
 ```
+
+## IAM Policy
+- AWSCodeCommitFullAccess : Admin 權限
+- AwSCodeCommitPowerUser: 不可以建立和刪除 repository 
+- AWSCodeCommitReadOnly: 使可以讀資訊

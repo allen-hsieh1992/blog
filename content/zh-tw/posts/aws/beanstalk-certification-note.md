@@ -12,23 +12,34 @@ aliases = ["beanstalk-certification-note"]
 images = ["images/aws.jpeg"]
 +++
 
+
+## Basic
+---
 - Beanstalk 是 PAAS 服務，可以透過 Config (.ebextensions) 設定去建立環境，例如基本的 Three Tire Architecture : Client -> Server -> DB，而我們只需要專注在 Application 上的開發 
 - Beanstalk 本身是免費的，只需要付原本底下的資源費用 例如 EC2, ELB 等等
 - 支援多個 Programming Language ，也支援 Docker
 - 有 Deployment 策略 和 Rollback 策略
+- 可以備份現在的設定 (Save Configuration)
+- 環境設定的順序 高到低
+    - 直接環境設定
+    - Save Configuration
+    - .ebextensions 設定
+    - Default Value 
+- 可以設定 Management Updated 
+    - 可以排成固定時間去做 patch
+    - 可以選擇是直接更新舊的，還是先建立一台新的機器安裝好去取代 
+- Swap URL ，透過此功能做到 Blue/Green Deployment ，底層是更改 Router53 Record
+- Multi-Container 底層是用ECS 做到
 
-## 可控制
----
-- instance type
-- databases
-- Auto Scaling Group
-- Elastic Load Balancer (Https)
-
-## Basic Of Components 
+## Basic Of Components
+--- 
 - Application
 - Application Version 
     - Deploy Code 放在 S3，指向特定 S3 Object Version
     - Version 有上限，可以透過 Application Life Cycle Policy 去刪除舊的 Version
+        - 可以設定上限多少 Version 
+        - 要存和保留多少天
+        - 也可以設定 Source 是否要保留在 S3
 - Environment Tire
     - Web Server: 
     - Worker: 在上面執行一些程式，例如可以是SQS 的 Puller ，將 Queue 裡面資料拉下來處理。有 Auto Scaling Group 可以根據 SQS Queen Number 去做 Auto Scaling  
@@ -36,6 +47,57 @@ images = ["images/aws.jpeg"]
     - 單一 Instance Environment 
     - Load-balancing, Autoscaling Environment: for web server
        -  Autoscaling Only : for worker Tire
+
+
+
+## . ebextensions
+---
+### 建立 Resource
+- 注意 Resource 如果透過 Beanstalk 一起建立的話，砍掉環境時也會跟著一起砍掉，所以 Storage 的部分最好分開建立，例如 RDS。
+
+```YAML
+Resources:
+  DynamoDBTable:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      KeySchema:
+         HashKeyElement:
+           AttributeName: id
+           AttributeType: S
+      # create a table with the least available rd and wr throughput
+      ProvisionedThroughput:
+         ReadCapacityUnits: 1
+         WriteCapacityUnits: 1
+
+  NotificationTopic:
+    Type: AWS::SNS::Topic
+
+Outputs:
+  NotificationTopicArn:
+    Description: Notification topic ARN
+    Value: { "Ref" : "NotificationTopic" }
+
+option_settings:
+  aws:elasticbeanstalk:application:environment:
+    # these are assigned dynamically during a deployment
+    NOTIFICATION_TOPIC: '`{"Ref" : "NotificationTopic"}`'
+    DYNAMODB_TABLE: '`{"Ref" : "DynamoDBTable"}`'
+    AWS_REGION: '`{"Ref" : "AWS::Region"}`'
+```
+### Command v.s Container Command 
+---
+- commands : 是在 Ec2 Instance 上執行，並且在 Application Code unpacked之前，按照英文名字順序執行
+- container_commands : 是在 Application code unpacked 之後，但在部署之前，可以用來修改 source code 
+    - leader_only : 由 Beanstalk 決定單一 instance 當 Leader 執行，並且會比其他沒有 leader_only 的 command 早執行，主要用在只能或只需要執行一次的 Command。
+```YMAL
+  create_hello_world_file:
+    command: touch hello-world.txt
+    cwd: /home/ec2-user
+    
+container_commands:
+  modify_index_html:
+    command: 'echo " - modified content" >> index.html'
+```    
 
 ## Deployment Policy
 ---
