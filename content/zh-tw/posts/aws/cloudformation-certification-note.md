@@ -314,7 +314,7 @@ Resources:
   - 如果直接更新 template 中的 user data，Auto Scaling Group 裡面的 EC2 還會是舊的 user data。
   - UpdatePolicy Attribute 可以使用在三種 AWS Resource
       - auto scaling group 有三種 Policy ，前兩種需要設定 WillReplace = true
-          - AutoScalingReplacingUpdate: 建立全新的 Auto Scaling Group 取代舊的
+          - AutoScalingReplacingUpdate: WillReplace可以用來決定建立全新的 Auto Scaling Group 取代舊，還是單純建立新的 Instance 來取代現有的 Instance 但 Auto Scaling Group 還是舊的。
           - AutoScalingRollingUpdate: 在 Auto Scaling Group，將現有的 EC2 Instance 停掉，並建立新的取代
           - AutoScalingScheduledAction 
 
