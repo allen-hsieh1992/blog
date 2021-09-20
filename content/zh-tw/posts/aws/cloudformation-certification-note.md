@@ -178,9 +178,9 @@ Resource:
 - AWS::CloudFormation::Init 目的是讓 EC2 的設定可讀性更高， 需要放在 metadata section
 - init 的 log 會寫在 /var/log/cfn-init.log
 - cfn-init &  cfn-signal 流程
-   -  CloudFormation 先建立 EC2 Instance ，如果有設定 WaitCondition 這時 CloudFormation 會等待 EC2 這邊的 signal
+   - CloudFormation 先建立 EC2 Instance ，如果有設定 WaitCondition 這時 CloudFormation 會等待 EC2 這邊的 signal
    - EC2 上面執行 User Data 時執行 cfn-init，這時 cfn-init 會去 CloudFormation 拉 metadata 的設定回來並執行 
-   - cfn-signal 用於執行完 cfn-init 告訴 CloudFormation 成功與否  
+   - cfn-signal 用於執行完 cfn-init 告訴 CloudFormation 成功與否
 - 沒有收到 Signal 怎麼辦
     - 確認 Script 是否有安裝
     - 可以disable rollback，進機器看  /var/log/cfn-init.log 和 /var/log/cloud-init-output.log
@@ -313,7 +313,7 @@ Resources:
 - UpdatePolicy
   - 如果直接更新 template 中的 user data，Auto Scaling Group 裡面的 EC2 還會是舊的 user data。
   - UpdatePolicy Attribute 可以使用在三種 AWS Resource
-      - auto scaling group 有三種 Policy ，前兩種需要設定 WillReplace = true
+      - auto scaling group 有三種 Policy
           - AutoScalingReplacingUpdate: WillReplace可以用來決定建立全新的 Auto Scaling Group 取代舊，還是單純建立新的 Instance 來取代現有的 Instance 但 Auto Scaling Group 還是舊的。
           - AutoScalingRollingUpdate: 在 Auto Scaling Group，將現有的 EC2 Instance 停掉，並建立新的取代
           - AutoScalingScheduledAction 

@@ -5,7 +5,6 @@ description = "這新專案我選擇使用了之前沒使用過的 Jersey Client
 featured = true
 categories = ["JAVA"]
 tags = [
-    "JAVA"
 ]
 date = "2021-06-30"
 aliases = ["java-jersey-client-log-request-duration"]

@@ -40,7 +40,7 @@ featuredPostCount = false # The number of featured posts shown in sidebar. Turn 
 # tagCount = 10 # The number of tags shown in sidebar. Turn off by setting it to false.
 # seriesCount = 10 # The number of series shown in sidebar. Turn off by setting it to false.
 # taxonomyPostCount = false # The number of posts of taxonomy. Turn off by setting it to false.
-
+diagram = true
 # Custom CSS and JS
 #customCSS = ["css/custom.css"]
 customCSS = []
@@ -108,6 +108,8 @@ titleCase = true # Capitalized title.
 
 #[share]
   #addThis = "" # AddThis pubid.
+[mermaid] # See https://mermaid-js.github.io/mermaid/#/Setup?id=configuration
+  theme = "dark"
 
 [fontSize] # Comment or remove this settings to disable font size switcher.
   extraSmall = ".8rem"
