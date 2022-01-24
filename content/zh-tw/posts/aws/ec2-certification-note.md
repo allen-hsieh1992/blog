@@ -41,7 +41,6 @@ images = ["images/aws.jpeg"]
       - 例如 t2.medium 正規化因素為 2 而 t2.small 為 1 ，當你購買一個 t2.medium 的 Reserved Instances，可以折扣在兩個 t2.small 的 instance。
 
 ### Spot Instance
-
 - 競價模式: 請求時會自定義一個每小時最高可接受的價格(Spot Price)，而 Spot Price 會隨著市場而變動，當最高價格高於 Spot price ，就有機會獲得 Instance。當然當 Spot Price 低於最高價格， AWS 會隨時終止你的 Instance，所以跑在 Spot Instance 上的服務，需要設計可以隨時可以被終止
   - 如果因 AWS 而終止，未滿一小時的費用， AWS 不會收取任何費用。
 - 每個 Region 可以限制 20 Spot Instance，可向 AWS 申請調高
@@ -62,7 +61,6 @@ images = ["images/aws.jpeg"]
   ```
 
 ### Dedicated Hosts & Instance
-
 Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式，但兩者有點小小的差別
 
 - Dedicated Hosts 是固定一台 EC2 給你使用，而 Dedicated Instance 只保證這台 EC2 上面的程式不會有其他人的，所以當你重啟 EC2 時，有可能是另一台 EC2。
@@ -72,11 +70,9 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
 - Dedicate Hosts 比 Dedicate Instance 貴
 
 ### Capacity Reservations
-
 因為 AWS 在 AZ 裡面的實體硬體是有限的，所以是有可能當你啟動 EC2 Instance 時是有可能沒有足夠資源的，這時候只能等待其他人釋放 Instance 或者 選擇不同類型的 Instance。Capacity Reservations 可以讓你先提前先預付某些資源，這樣就不用擔心要啟用 EC2 Instance時沒有資源。在啟用新的 EC2 Instance 時可以直接選擇從 Capacity Reservations 裡面直接扣除，就不需要額外再付費了。但要注意，在 Capacity Reservations 的狀態是啟用時，就已經產生收費。
 
 ### Saving Plan
-
 - Compute Savings Plans
   - 最高省66%
   - 折扣會自動套用在任何 EC2 Instance 上，不管是什麼操作系統、Instance Type 或者在任何 Region
@@ -86,7 +82,6 @@ Dedicated Hosts & Dedicated Instance 都是只在實體機上執行你的程式�
 - 可以和 Capacity Reservations 混著使用。
 
 ### Spot Feet
-
 - Spot Feet 會根據設定 (launch pools) 嘗試要到足夠的 Spot Instance ，剩餘的會使用 On-Demand Instance 補齊。
 - 可以選擇的策略
   - lowestPrice: 從 Pool 中選出最便宜的方案

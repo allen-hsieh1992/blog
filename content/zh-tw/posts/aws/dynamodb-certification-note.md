@@ -12,16 +12,16 @@ aliases = ["dynamodb-certification-note"]
 images = ["images/aws.jpeg"]
 +++
 
-## Basic of DynamoDB 
-- DynamoDB 是 AWS NOSQL Database. 
-- DynamoDB 的資料存在 SSD ，所以有很好的 performance
+## Basic of DynamoDB
+- DynamoDB 是 AWS NOSQL Database.
+- performance 的部分，DynamoDB 的資料存在 SSD
 - Data 會自動備份到不同的 AZ ，預防 single point failure
-- DynamoDB 以 table 為單位，裡面每筆的 Row 為 Item ，而每個 Item 的 Column 為 Attribute 
+- DynamoDB 以 table 為單位，裡面每筆的 Row 為 Item ，而每個 Item 的 Column 為 Attribute
 - DynamoDB 有兩種 Type 的 Primary Key ，在 DB 需要是唯一值
-    - Partition Key  
+    - Partition Key
     - Composite Key ( Partition Key + Sort Key)
         - 同一個  Partition Key 會存在一起，根據 Sort Key 去排序
-- 可以設定 TTL (Time to Live ) to Item，所以當時間到 Item 會自動刪除。TTL 需要存要刪除的時間 Timestamp 
+- 可以設定 TTL (Time to Live ) to Item，所以當時間到 Item 會自動刪除。TTL 需要存要刪除的時間 Timestamp
 
 ## Secondary Index
 ---
@@ -30,8 +30,8 @@ images = ["images/aws.jpeg"]
     - Global Secondly Index
         - Partition Key 和 Sort Key 可以都不一樣
         - queries or scans 只能拉有 projected 到  secondary Index 的 attribute
-    - Local Secondary Index 
-        - 一樣的 Partition Key 但是不一樣的 Sort Key => 所以 Primary Key  一定要是 Composite Key 
+    - Local Secondary Index
+        - 一樣的 Partition Key 但是不一樣的 Sort Key => 所以 Primary Key  一定要是 Composite Key
         - 只能在建立 Table 時建立
         - query or scan 如果沒有 projected 到  secondary Index 的 attribute， DynamoDB 會自動從 table 拉出來
 
@@ -50,18 +50,18 @@ images = ["images/aws.jpeg"]
 - Scan 
     - 是拉出所有的 Items (full table scan)，然後可以透過 Filter 一一過濾
     - performance 比 Query 差
-    - 可以用小的 page size 改進 performance  
-    - 可以設定 Parallel 去加強 performance，但要注意 DynamoDB loading 是否很重 
+        - 可以用小的 page size 改進 performance  
+        - 可以設定 Parallel 去加強 performance，但要注意 DynamoDB loading 是否很重 
 
 ## DynamoDB Capacity  
 ---
-- Provisioned Capacity 吞吐量 (Throughput) 
-    - DynamoDB 吞吐量定義單位為 Capacity Unit ，區分為 Read, Write 兩個   
-        - 一個 Write Capacity Unit 等於 1 KB/1 Second 
+- Provisioned Capacity 吞吐量 (Throughput)
+    - DynamoDB 吞吐量設定單位為 Capacity Unit ，區分為 Read, Write 兩個
+        - 一個 Write Capacity Unit 等於 1 KB/1 Second
         - 一個 Read Capacity Unit 等於
-            -  1 個 Strongly Consistent Reads 4 KB / 1 Second 
-            -  2 個 Eventually Consistent Reads 4 KB / 1 Second 
-    -  如果超出定義的 Capacity Unit ，DynamoDB 會噴 ProvisionedThroughputExceededException 。
+            -  1 個 Strongly Consistent Reads 4 KB / 1 Second
+            -  2 個 Eventually Consistent Reads 4 KB / 1 Second
+    -  如果超出設定的 Capacity Unit ，DynamoDB 會噴 ProvisionedThroughputExceededException 。
     -  建議時做 exponential backoff retry，意思就是隨著 retry 次數的增長，每個request 中間的時間區隔也會增長
 -  On-Demand Capacity
     - AWS 會根據流量自動 Scaling 
@@ -69,15 +69,15 @@ images = ["images/aws.jpeg"]
 
 ## DynamoDB Accelerator (DAX)
 ---
-- DAX 是 AWS 管理的 in memory cache cluster ，可以加快 Read 的 Perofrmance 
+- DAX 是 AWS 管理的 in memory cache cluster ，可以加快 Read 的 Perofrmance
 - 在寫入資料時，會同時寫入 DAX 和 DynamoDB Table，所以寫入後直接 Read 會 Hit 到 cache
 - 不支援 Strongly consistent reads 
 
 ## DynamoDB Stream
 --- 
-- 會抓到所有修改 Item 的 Event ，可以 Trigger Lambda 
+- 會抓到所有修改 Item 的 Event ，可以 Trigger Lambda
 - 資料會加密和保存 24 小時
-- 有獨立的 Endpoint 
+- 有獨立的 Endpoint
 
 ## AWS CLI create table example
 ---
@@ -93,7 +93,7 @@ aws dynamodb create-table \
     --provisioned-throughput \
         ReadCapacityUnits=10,WriteCapacityUnits=5
 ```
-- KeyType : 
+- KeyType :
     - Hash: Partition Key
     - RANGE:       Sort Key
 

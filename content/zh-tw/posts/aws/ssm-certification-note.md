@@ -51,7 +51,8 @@ images = ["images/aws.jpeg"]
    - AWS Console, Cli or SDK
    - EventBridge
    - 透過 Maintain Windows 排成
-   - AWS Config Remediation 
+   - AWS Config Remediation
+- 可以用來建立 AMI，AWS 有提供 AWS-UpdateLinuxAmi 和 AWS-UpdateWindowsAmi 
 
 ## Parameter Store
 ---
@@ -105,14 +106,12 @@ images = ["images/aws.jpeg"]
 | standard throughput | free | $0.05/ 10,000 API |
 | high  throughput (1000 api / second) | $0.05/10,000 API | $0.05/10,000 API |
 
-
 ## Inventory 
 ---
 - 收集 EC2 or On-premises 機器上的資訊包含 :已安裝的軟體, OS drivers 和 設定 或 正在執行的 services。並可以透過這些資料做稽核
 - 可以設定資料更新的時間區間為 分、秒或小時
 - 可以將資料存在 S3 透過 Athena 來分析
 - 可以建立客製化 Inventory ，拉特定資訊
-
 
 ## State Manager
 ---

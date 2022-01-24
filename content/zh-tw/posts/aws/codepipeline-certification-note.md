@@ -12,8 +12,6 @@ aliases = ["codepipeline-certification-note"]
 images = ["images/aws.jpeg"]
 +++
 
-
-
 ## Basic 
 ---
 - Stage 裡面可以有許多 Action， Stage 跟 Stage 之間是可以關聯的
@@ -48,6 +46,7 @@ images = ["images/aws.jpeg"]
 - Invoke Action : 觸發 Lambda Function
 - Test Action: [CodeBuild](/posts/aws/codebuild-certification-note/), Jenkins and or  open source
     - 可以設定 Input artifacts and output  artifacts 
+- Custom Action: 需要建立一個 Job Worker 去執行程式
 
 ### Example
 

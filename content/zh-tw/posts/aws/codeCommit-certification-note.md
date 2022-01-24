@@ -24,7 +24,8 @@ images = ["images/aws.jpeg"]
 ## Repository
 ---
 - 每個 Repository 沒有 Size 限制
-- 可以建立 Notification Rule ，根據設定的 Event 發出 SNS 
+- 可以建立 Notification Rule ，根據設定的 Event 發出 SNS
+    - SNS 必須跟 CodeCommit 在同一個 Region
 - 可以建立 Event Trigger 觸發 SNS 或 Lambda 
 - 可以給予其他 AWS Account User 讀取權限
 - 可以透過 KMS 加密 Repository 裡面的 File
@@ -85,4 +86,4 @@ aws codecommit create-approval-rule-template \
 ## IAM Policy
 - AWSCodeCommitFullAccess : Admin 權限
 - AwSCodeCommitPowerUser: 不可以建立和刪除 repository 
-- AWSCodeCommitReadOnly: 使可以讀資訊
+- AWSCodeCommitReadOnly: 只可以讀資訊
