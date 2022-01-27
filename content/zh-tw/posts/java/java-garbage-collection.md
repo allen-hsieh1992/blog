@@ -1,7 +1,7 @@
 +++
-title = "Java Garbage Collection 基礎"
+title = "Java Garbage Collection 基礎演算法"
 author = "Allen Hsieh"
-description = "這新專案我選擇使用了之前沒使用過的 Jersey Client~ 由於希望分析打到其他服務的 P99 latency，所以我研究了一下怎麼去 log 下來所有的 duration (如果不知道什麼是 P99 latency 可以參考這篇文章 “ What is P99 latency?“ )。這邊分享一下，我最後使用的方法，由於不太熟 Jersey Client，所以最後也是花了一點時間才找到使用 ClientRequestFilter & ClientResponseFilter 來解決。"
+description = "在大學時 Algorithm, OS, 和 Data Structure 等課程都是使用 C 或 C++ 來當作課程教材的語言。而 C 與 C++ 語言可以擁有很大的掌控權力在 Memory 上，但是一處理不好就容易造成 Memory Leak。讓我印象最深刻的是 Operating System 課程，使用 OS161] 來當作做作業的練習， 而最後一個作業就是實作 Memory Management。大家那時候最害怕遇到的錯誤訊息就是“I can't handle this... I think I'll just die now...“，然後就要開始艱辛的 Debug 路程"
 featured = true
 categories = ["JAVA"]
 tags = [
@@ -44,16 +44,17 @@ Mark-Compact 演算法是基於 Mark & Sweep 演算法的優化，多增加一�
 ## Java Garbage Collection 
 ---
 ### Generation Collector
-在Java9 之前，Generation 演算法一直是主流。Generation 演算法的核心理論在於大部分的物件很快就是被清掉，如果沒被清掉，就不需要這麼頻繁的一直重複確認是否存在。Generation 演算法會將記憶體分為 Young & Old Generation。Young Generation 用於存放所有新物件，在幾次 GC 後還在 Young Generation 未清除的物件，將被升級到 Old Generation。
+Generation 演算法的核心理論在於大部分的物件很快就是被清掉，如果沒被清掉，就不需要這麼頻繁的一直重複確認是否存在。Generation 演算法會將記憶體分為 Young & Old Generation。Young Generation 用於存放所有新物件，在幾次 GC 後還在 Young Generation 未清除的物件，將被升級到 Old Generation。
 
 
 ![Center](/images/post/java-garbage-collection/heapStructure.png#center)
 
 如上圖 Java 將記憶體資料結構分為
 * Young Generation
-    * 有兩個 `survivor` 空間，也就是以上的 S0 & S1 
+    * 有兩個 `survivor` 空間，也就是圖上的 S0 & S1 
         * 這邊使用 Copying 演算法，將物件在 S0 與 S1 之間複製。
-    * Eden Space: 這邊用於存新的物件
+        * 複製到一定次數會被升級到 Olde Generation
+    * Eden Space: 這邊用於存新的物件，在第一次 GC 時，沒有被清除就會移到 S0 or S1 
 * Old Generation 
     * 這邊使用 Mark-Compact 演算法。
 * Permanent Generation 
@@ -67,3 +68,53 @@ Generation 演算法中有個特別的資料結構叫做 Card Table，想像如�
 
 Java9 現在預設的 Garbage Collection G1 是使用 Region 演算法。如上圖，Region 演算法還是有 Generation 的概念，但跟 Generation 演算法不同的地方是，它將記憶體切成多個不同大小(1 MB 到 32 MB 不等)的 Region。由於更多的區塊，所以可以並發GC，而且也因為每個 Region 更小，所以 GC 的數度更快。 
 
+## Java 取得 Garbage Collection 資訊
+
+Java 有特別的 Garbage Collection 接口 GarbageCollectorMXBean，以下是範例
+```Java
+package com.javacore.gc;
+
+import java.lang.management.GarbageCollectorMXBean;
+import java.lang.management.ManagementFactory;
+import java.util.List;
+
+public class MxBean {
+
+    public static void main(String[] args) {
+        List<GarbageCollectorMXBean> beanList = ManagementFactory.getGarbageCollectorMXBeans();
+        for (GarbageCollectorMXBean bean: beanList) {
+            System.out.println("Name: " + bean.getName());
+            System.out.println("Number of Collection Count: " + bean.getCollectionCount());
+            System.out.println("Collection Time " + bean.getCollectionTime() + "ms");
+            System.out.println("Pool Name " + bean.getName());
+
+            for(String pool : bean.getMemoryPoolNames()) {
+                System.out.println(pool);
+            }
+            System.out.println();
+        }
+    }
+}
+```
+
+* getCollectionCount(): 以執行次數
+* getCollectionTime(): 預計以執行 Total 時間，單位為毫秒
+
+以下是 Open JDK11 預設 G1 執行結果
+```Bash
+Name: G1 Young Generation
+Number of Collection Count: 0
+Collection Time 0
+Pool Name G1 Young Generation
+G1 Eden Space
+G1 Survivor Space
+G1 Old Gen
+
+Name: G1 Old Generation
+Number of Collection Count: 0
+Collection Time 0
+Pool Name G1 Old Generation
+G1 Eden Space
+G1 Survivor Space
+G1 Old Gen
+```

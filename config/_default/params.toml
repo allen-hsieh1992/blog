@@ -51,8 +51,8 @@ customJS = []
 titleCase = true # Capitalized title.
 
 [codeBlock]
-  maxLines = 10
-  lineNos = false # true/false represents that show/hide the line numbers by default.
+  maxLines = 15
+  lineNos = true # true/false represents that show/hide the line numbers by default.
 
 [post]
   excerpt = "description"
