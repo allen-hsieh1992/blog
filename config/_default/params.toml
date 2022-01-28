@@ -16,7 +16,7 @@ palette = "blue" # Default palette. Optional.
 
 color = "dark" # light, dark or dynamic. Default to dynamic.
 
-fullWidth = true # Full width.
+#fullWidth = true # Full width.
 # fixedHeader = false # Turn on/off fixed header.
 
 # dateFormat = "Jan 2, 2006"
@@ -83,7 +83,8 @@ titleCase = true # Capitalized title.
   # sa = true # Adaptations must be shared under the same terms.
 
 [utterances]
-  repo = "allen-hsieh1992/allen-hsieh1992.github.io" # Replace with your repository.
+  #repo = "allen-hsieh1992/allen-hsieh1992.github.io" # Replace with your repository.
+  repo = "allen-hsieh1992/blog" # Replace with your repository.
   #issueTerm = "pathname" # pathname, url, title, og:title
   #label = "comment"
   # By default, light and dark mode correspond to github-light and github-dark, respectively.
