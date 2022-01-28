@@ -3,7 +3,7 @@
 # titleSeparator = "|" # Title separator. Default to "-".
 
 description = "艾倫的學習筆記"
-keywords = "艾倫, AWS, Allen"
+keywords = "艾倫, AWS, Allen, Note"
 # images = ["site-feature-image.jpg"]
 
 logo = "images/logo.png" # Logo image. Default to "images/logo.webp".
@@ -16,7 +16,7 @@ palette = "blue" # Default palette. Optional.
 
 color = "dark" # light, dark or dynamic. Default to dynamic.
 
-# fullWidth = true # Full width.
+fullWidth = true # Full width.
 # fixedHeader = false # Turn on/off fixed header.
 
 # dateFormat = "Jan 2, 2006"
@@ -56,6 +56,7 @@ titleCase = true # Capitalized title.
 
 [post]
   excerpt = "description"
+  copyright = false
   # excerptMaxLength = 120
 
 [archive]
@@ -105,6 +106,9 @@ titleCase = true # Capitalized title.
 #[reward]
 #  alipay = "images/reward/alipay.png"
 #  wechat = "images/reward/wechat.png"
+
+metaRobots = "index, follow" # Default value for Meta Tag "robots"
+
 
 #[share]
   #addThis = "" # AddThis pubid.

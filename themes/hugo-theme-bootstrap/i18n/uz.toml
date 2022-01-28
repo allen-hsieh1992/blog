@@ -7,6 +7,9 @@ other = "Alipay"
 [archives]
 other = "Arxiv"
 
+[buy_me_a_coffee]
+other = "Buy me a coffee"
+
 [categories]
 other = "Bo'limlar"
 
@@ -73,6 +76,9 @@ other = "{{ .PageNumber }} - sahifa"
 [palette]
 other = "Palitra"
 
+[read_more]
+other = "Read More"
+
 [reading_time]
 other = "{{ .ReadingTime }} daqiqada o'qiysiz"
 
@@ -81,9 +87,6 @@ other = "Oxirgi maqolalar"
 
 [related_posts]
 other = "O'xshash maqolalar"
-
-[reward]
-other = "Qaytish"
 
 [search]
 other = "Qidirish"

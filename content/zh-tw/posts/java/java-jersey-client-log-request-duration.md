@@ -4,8 +4,7 @@ author = "Allen Hsieh"
 description = "這新專案我選擇使用了之前沒使用過的 Jersey Client~ 由於希望分析打到其他服務的 P99 latency，所以我研究了一下怎麼去 log 下來所有的 duration (如果不知道什麼是 P99 latency 可以參考這篇文章 “What is P99 latency?“)。這邊分享一下，我最後使用的方法，由於不太熟 Jersey Client，所以最後也是花了一點時間才找到使用 ClientRequestFilter & ClientResponseFilter 來解決。"
 featured = true
 categories = ["JAVA"]
-tags = [
-]
+tags = []
 date = "2021-06-30"
 aliases = ["java-jersey-client-log-request-duration"]
 images = ["images/java.jpeg"]

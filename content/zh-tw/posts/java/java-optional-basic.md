@@ -5,7 +5,7 @@ description = "最近我們部門在開發新的微服務都是使用 Java，但
 featured = true
 categories = ["JAVA"]
 tags = [
-    "JavaCore",
+    "JavaCore"
 ]
 date = "2021-06-27"
 aliases = ["java-optional-basic"]

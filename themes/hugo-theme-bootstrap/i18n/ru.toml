@@ -7,6 +7,9 @@ other = "Alipay"
 [archives]
 other = "Архив"
 
+[buy_me_a_coffee]
+other = "Buy me a coffee"
+
 [categories]
 other = "Категории"
 
@@ -73,6 +76,9 @@ other = "{{ .PageNumber }} - страница"
 [palette]
 other = "Palitra"
 
+[read_more]
+other = "Read More"
+
 [reading_time]
 other = "Читается за {{ .ReadingTime }} минуты"
 
@@ -81,9 +87,6 @@ other = "Последние обновления"
 
 [related_posts]
 other = "Похожие публикации"
-
-[reward]
-other = "Возврат"
 
 [search]
 other = "Поиск"

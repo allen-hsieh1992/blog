@@ -7,6 +7,9 @@ other = "Alipay"
 [archives]
 other = "Archives"
 
+[buy_me_a_coffee]
+other = "Buy me a coffee"
+
 [categories]
 other = "Catégories"
 
@@ -73,6 +76,9 @@ other = "Page {{ .PageNumber }}"
 [palette]
 other = "Palette"
 
+[read_more]
+other = "en savoir plus"
+
 [reading_time]
 other = "{{ .ReadingTime }} min de lecture"
 
@@ -81,9 +87,6 @@ other = "Articles Récents"
 
 [related_posts]
 other = "Articles en Relations"
-
-[reward]
-other = "Récompenser"
 
 [search]
 other = "Chercher"

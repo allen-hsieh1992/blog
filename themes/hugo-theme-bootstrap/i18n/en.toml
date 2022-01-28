@@ -1,3 +1,9 @@
+[404_title]
+other = "Oops! Page not found."
+
+[404_info]
+other = "We can't seems to find the page you're looking for."
+
 [about_me]
 other = "About Me"
 
@@ -6,6 +12,21 @@ other = "Alipay"
 
 [archives]
 other = "Archives"
+
+[button_copy_url]
+other = "Copy URL"
+
+[button_reload]
+other = "Reload"
+
+[button_social_share]
+other = "Share"
+
+[button_submit]
+other = "Submit"
+
+[buy_me_a_coffee]
+other = "Buy me a coffee"
 
 [categories]
 other = "Categories"
@@ -46,6 +67,27 @@ other = "Teal"
 [color_yellow]
 other = "Yellow"
 
+[comments]
+other = "Comments"
+
+[contact_name]
+other = "Name"
+
+[contact_email]
+other = "Email"
+
+[contact_email_help]
+other = "We'll never share your email with anyone else."
+
+[contact_file]
+other = "File"
+
+[contact_subject]
+other = "Subject"
+
+[contact_message]
+other = "Message"
+
 [copyright]
 other = "Copyright"
 
@@ -55,11 +97,17 @@ other = "Featured Posts"
 [font_size]
 other = "Font Size"
 
+[go_back]
+other = "Go back"
+
 [home]
 other = "Home"
 
 [language]
 other = "Language"
+
+[liberapay]
+other = "Liberapay"
 
 [load_more]
 other = "Load More"
@@ -67,15 +115,33 @@ other = "Load More"
 [mode]
 other = "Mode"
 
+[offline_title]
+other = "Oops! You're offline."
+
+[offline_info]
+other = "It seems there is a problem of your connection. Please check your network status."
+
 [pagination_title]
 other = "Page {{ .PageNumber }}"
 
 [palette]
 other = "Palette"
 
+[patreon]
+other = "Patreon"
+
+[paypal]
+other = "Paypal"
+
 [post_count]
 one = "{{ .Count }} post in total"
 other = "{{ .Count }} posts in total"
+
+[post_date]
+other = "created on {{ .createdOn }}{{ with .updatedOn }}, updated on {{ . }}{{ end }}."
+
+[read_more]
+other = "Read More"
 
 [reading_time]
 other = "{{ .ReadingTime }} min read"
@@ -85,9 +151,6 @@ other = "Recent Posts"
 
 [related_posts]
 other = "Related Posts"
-
-[reward]
-other = "Reward"
 
 [search]
 other = "Search"
@@ -108,10 +171,13 @@ other = "Series"
 other = "Settings"
 
 [table_of_contents]
-other = "Table Of Contents"
+other = "Contents"
 
 [tags]
 other = "Tags"
+
+[try_again]
+other = "Try again"
 
 [wechat]
 other = "WeChat"

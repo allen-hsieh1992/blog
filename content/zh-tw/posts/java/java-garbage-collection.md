@@ -5,6 +5,7 @@ description = "在大學時 Algorithm, OS, 和 Data Structure 等課程都是使
 featured = true
 categories = ["JAVA"]
 tags = [
+"JavaCore"
 ]
 date = "2022-01-26"
 aliases = ["java-garbage-collection"]
