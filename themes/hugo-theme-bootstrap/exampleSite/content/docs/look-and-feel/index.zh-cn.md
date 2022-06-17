@@ -19,7 +19,7 @@ series = [
   "文档"
 ]
 images = []
-weight = 980
+weight = 960
 aliases = [
   "/zh-cn/posts/look-and-feel"
 ]
@@ -33,20 +33,50 @@ aliases = [
 
 <!--more-->
 
+## 背景图片
+
+```toml {title="config/_default/params.toml"}
+# 在亮色和暗色模式下都使用相同的图片
+backgroundImage = ['/images/bg.png']
+
+# 在亮色和暗色模式下使用对应的图片
+backgroundImage = ['/images/bg-light.png', '/images/bg-dark.png']
+```
+
 ## 调色板
+
+HBS 提供了大量的配色：`blue`、`blue-gray`、`brown`、`cyan`、`green`、`indigo`、`orange`、`pink`、`purple`、`red`、`teal`、`yellow`。
+
+### 可用的配色
+
+设置面板的调色板选择器是基于 `palettes` 参数的。
+
+```toml {title="config/_default/params.toml"}
+palettes = ["blue", "blue-gray", "indigo"]
+```
+
+你也可以将 `palettes` 设置为空数组 `[]` 以禁用调色板。
+
+### 默认配色
+
+```toml {title="config/_default/params.toml"}
+palette = "indigo"
+```
+
+> 修改默认配色后，需要清理浏览器缓存。
+
+### 修改配色
 
 主题的调色板系统基于 CSS 变量，因此，我们可以轻松地为每个调色板自定义颜色。
 
-我们以一个例子进行说明。
-
-```CSS
+```scss {title="assets/main/scss/_custom.scss"}
 [data-palette=blue] {
-  --hbs-primary: darkblue;
-  --hbs-on-primary: #fff;
+    --#{$variable-prefix}primary: darkblue;
+    --#{$variable-prefix}on-primary: #fff;
 }
 ```
 
-在 `assets/css/custom.css` 追加样式后，`blue` 调色板的颜色将会变成 `darkblue`。
+在 `assets/main/scss/_custom.scss` 追加样式后，`blue` 调色板的颜色将会变成 `darkblue`。
 
 ## 字体
 
@@ -56,19 +86,12 @@ aliases = [
 
 你也可以轻易地使用其他 web 字体，比如 [Google Fonts](https://fonts.google.com/)。我们以 Roboto 字体为例。
 
-首先，我们通过 `customCSS` 导入字体：
+首先，我们导入字体，然后在 `assets/main/scss/_custom.scss` 覆盖 `body-font-family` 变量：
 
-```
-customCSS = [
-  "https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-]
-```
-
-然后在 `assets/css/custom.css` 覆盖 `--hbs-body-font-family` 变量：
-
-```CSS
+```scss {title="assets/main/scss/_custom.scss"}
+@import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 :root {
-  --hbs-body-font-family: 'Roboto', sans-serif;
+    --#{$variable-prefix}body-font-family: 'Roboto', sans-serif;
 }
 ```
 
@@ -85,64 +108,22 @@ customCSS = [
 ### 样式
 
 ```shell
-$ hugo gen chromastyles --style=solarized-dark > assets/css/highlight.css
+$ hugo gen chromastyles --style=solarized-dark > assets/main/scss/_highlight.scss
 ```
 
 另外可参阅[所有支持的样式](https://xyproto.github.io/splash/docs/all.html)。
 
 ## 图标
 
-为了减少图标的文件大小，我们使用自定义的 [Font Awesome](https://fontawesome.com/) 图标集。
-正因如此，你可以自由地选择其他图标。
+```js {title="assets/icons/custom.js"}
+// import { faClock } from '@fortawesome/free-solid-svg-icons';
+// import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
+// import { faAmazon, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
-### Font Awesome
-
-#### 自定义构建
-
-> 本章节包含前端技术，比如 `JavaScript` 和 `npm`。
-
-我们提供一个名为 `assets/icons/index.js` 的文件，以便自定义图标，因此，你可以按需添加图标。
-我们已为你在示例站点设置好了构建环境。
-
-1. 安装依赖
-
-```shell
-$ npm install
+const icons = [
+    // faClock,
+    // faAddressBook,
+    // faAmazon, faGoogle,
+];
+export default icons;
 ```
-
-2. 在 `src/icons/index.js` 添加图标：
-
-```js
-import { faGlobe, faClock } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faGlobe, faClock);
-```
-
-3. 重建 `assets/js/icons.js`：
-
-```shell
-$ npm run build
-```
-
-如果你熟悉前端开发，推荐使用此方法添加图标。
-
-#### CustomJS
-
-因为本主题使用 JS+SVG 框架以替换图标为 SVG，所以 `customCSS` 将会无效，你需要使用 `customJS` 替代。
-
-```toml
-customJS = [
-  "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/solid.min.js" # Import solid icons.
-  #"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/regular.min.js" # Import regular icons.
-  #"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/brands.min.js" # Import brand icons.
-  #"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/all.min.js" # Import the full icon set.
-]
-```
-
-### 其他
-
-其他图标可以通过 `customCSS`，`customJS` 或 [钩子]({{< ref "/docs/hooks" >}}) 导入。
-
-- [Iconify](https://iconify.design/)
-- [Bootstrap Icons](https://icons.getbootstrap.com/)
-- [Material Design Icons](https://materialdesignicons.com/)

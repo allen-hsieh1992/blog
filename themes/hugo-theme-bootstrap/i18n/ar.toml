@@ -10,6 +10,9 @@ other = "عنّي"
 [alipay]
 other = "علي باي"
 
+[all]
+other = "الكل"
+
 [archives]
 other = "الأرشيف"
 
@@ -151,6 +154,15 @@ other = "التدوينات الأخيرة"
 
 [related_posts]
 other = "تدوينات ذات صلة"
+
+[repo_action_edit]
+other = "تعديل هذه الصفحة"
+
+[repo_action_view]
+other = "عرض مصدر الصفحة"
+
+[repo_title]
+other = "المستودع"
 
 [search]
 other = "البحث"

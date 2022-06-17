@@ -10,7 +10,7 @@ categories = [
 ]
 tags = [
   "Installation",
-  "Upgrade"
+  "Prerequisites"
 ]
 series = [
   "Docs"
@@ -25,83 +25,40 @@ aliases = [
   weight = 1
 +++
 
-This article describes how to install, upgrade the theme, and write new articles.
+HBS(Hugo Bootstrap) is a fast, responsive and feature-rich Hugo theme for personal blog and documentations.
+Please make sure you [meet the prerequisites](#prerequisites) prior to installing the theme.
 
 <!--more-->
 
-## Installation
+## Prerequisites
 
-> Required Hugo `0.75.0` or above.
+### Configuration
 
-### Create a New Site from Scratch
+Since `0.68.0`, HBS requires the following configurations are be set.
 
-```shell
-$ hugo new site myblog
-$ cd myblog
-$ git init
-$ git submodule add https://github.com/razonyang/hugo-theme-bootstrap themes/hugo-theme-bootstrap
-$ cp -a themes/hugo-theme-bootstrap/exampleSite/* .
-$ hugo server
-```
+{{< code-toggle filename="config" >}}
+[build]
+  writeStats = true
+{{</ code-toggle >}}
 
-> If you're using Windows, use `xcopy .\themes\hugo-theme-bootstrap\exampleSite /E` instead.
+### Build Tools
 
-### Install on an existing site
+- [Git](https://git-scm.com/downloads).
+- [Hugo](https://gohugo.io/getting-started/installing/): **extended** version `0.84.0` or above.
+- [npm](https://nodejs.org/en/download/): used for installing CSS and JS dependencies.
+- [Go](https://go.dev/dl/): version `1.12` or above, required only when installed as a [Hugo Module]({{< ref "/docs/installation/hugo-module" >}}).
 
-```shell
-$ cd myblog
-$ git submodule add https://github.com/razonyang/hugo-theme-bootstrap themes/hugo-theme-bootstrap
-$ mkdir config
-$ cp -a themes/hugo-theme-bootstrap/exampleSite/config/* ./config
-$ cp -r themes/hugo-theme-bootstrap/exampleSite/content/about/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/archives/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/categories/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/contact/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/offline/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/search/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/series/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/tags/ \
-  ./content
-$ hugo server
-```
+> We recommend using the latest version of those tools.
 
-> If you're making a fresh clone, you will be need to update your submodule via `git submodule update --init --recursive` or clone with submodule `git clone --recursive <repo>`.
+## Installation Methods
 
-## Upgrade
-
-```shell
-$ cd themes/hugo-theme-bootstrap
-$ git fetch
-$ git checkout [version]
-$ cd ../../
-$ git add themes/hugo-theme-bootstrap
-$ git commit -m 'Upgrade the theme'
-```
-
-- Replace the `[version]` with the latest version. The version can be listed by `git tag -l | sort -rV`.
-- You can also checkout the `master` branch for getting the latest commit.
-
-## Write Articles
-
-> Suppose the default language is `en`.
-
-```shell
-$ hugo new posts/new-post/index.md
-```
-
-The command above create a new post written in English. Similarly, we can create a post written in Simplified Chinese:
-
-```shell
-$ hugo new posts/new-post/index.zh-cn.md
-```
-
-> Please remind that, the created posts are generally in draft state. You'll need to specify the `-D` parameter of the command `hugo server` for previewing.
-> Similarly, you need to change the `draft` to `false` or remove `draft` parameter if you want to publish the article.
-
-> You can place your posts anywhere, such as `blog`, what you need to do is just append the `blog` to the `mainSections` parameter: `mainSections = ["posts", "blog"]`.
+- [Install via Starter Template](https://github.com/razonyang/hugo-theme-bootstrap-skeleton): **Recommended**.
+- [Install via Git Submodule]({{< ref "/docs/installation/git-submodule" >}}).
+- [Install via Hugo Module]({{< ref "/docs/installation/hugo-module" >}}).
 
 ## Up Next
 
 - [Tweak Configuration]({{< ref "/docs/configuration" >}})
 - [Menu]({{< ref "/docs/menu" >}})
 - [Look and Feel]({{< ref "/docs/look-and-feel" >}})
+- [Adding content]({{< ref "/docs/content" >}})

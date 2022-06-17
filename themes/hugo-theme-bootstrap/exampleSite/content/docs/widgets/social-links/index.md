@@ -79,3 +79,9 @@ github = "githubusername"
 | `discourse` | Forum URL |
 | `tiktok` | TikTok Username |
 | `pinterest` | Pinterest Username |
+| `mastodon` | Mastodon Username |
+| `liberapay` | Liberapay Username |
+| `paypal` | Paypal Username |
+| `patreon` | Patreon Username |
+| `tipeee` | Tipeee Username |
+| `rss` | Empty string for disabling the RSS link |

@@ -1,6 +1,8 @@
 <!doctype html>
 {{- $color := $.Site.Params.color -}}
-<html lang="{{ .Lang }}"{{ with $.Site.Params.palette }} data-palette="{{ . }}"{{ end }}
+<html class="position-relative" itemscope itemtype="http://schema.org/WebPage" lang="{{ .Lang }}"
+  {{ with $.Site.Language.LanguageDirection }} dir="{{ . }}"{{ end }}
+  {{ with $.Site.Params.palette }} data-palette="{{ replace . " " "-" }}"{{ end }}
   {{ if in (slice "light" "dark") $color }}{{ printf " data-mode=\"%s\"" $color | safeHTMLAttr }}{{ end }}>
   <head>
     <meta charset="utf-8">
@@ -17,7 +19,7 @@
     </script>
     {{- partial "header.html" . -}}
     {{- partial "hooks/main-begin" . -}}
-    <main role="main" class="container{{ if default false .Site.Params.fullWidth }}-fluid{{ end }}">
+    <main class="{{- partial "helpers/fullwidth" (dict "Page" . "Output" "container" "FullWidthOutput" "container-fluid") -}}">
       <div class="row content">
         {{- block "content" . -}}{{- end -}}
       </div>

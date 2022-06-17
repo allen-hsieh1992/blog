@@ -24,7 +24,7 @@ color = "dark" # light, dark or dynamic. Default to dynamic.
 # Google Adsense
 googleAdsense = ""
 
-# math = true # Enable math globally.
+math = true # Enable math globally.
 # toc = false # Disable TOC globally.
 # breadcrumb = false # Disable breadcrumb
 

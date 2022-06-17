@@ -15,7 +15,7 @@ series = [
   "檔案"
 ]
 images = []
-weight = 990
+weight = 980
 aliases = [
   "/zh-tw/posts/configuration"
 ]
@@ -59,10 +59,13 @@ aliases = [
 | `mainSections` | Array | `["posts"]` | 主要的 sections
 | `titleCase` | Boolean | `false` | 標題首字母是否大寫
 | `titleSeparator` | String | `-` | 標題分隔符
+| `backgroundImage` | Array | `[]` | 背景圖，如：`['/images/bg.png']`, `['/images/bg-light.png', '/images/bg-dark.png']`。
 | `comment` | Boolean | `true` | 是否開啟評論
 | `toc` | Boolean | `true` | 是否開啟目錄
+| `tocPosition` | String | `sidebar` | 可選值：`sidebar` 和 `content`，僅作用於 `post` 佈局。
 | `tocWordCount` | Integer | `280` | 僅當文章的字數超過此值時，才會顯示目錄。
 | `breadcrumb` | Boolean | `true` | 是否開啟面包屑導航
+| `breadcrumbDivider` | String | `/` | 面包屑導航分隔符
 | `dateFormat` | String | `Jan 2, 2006` | 日期格式。 查閱 [Hugo Date and Time Templating Reference](https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference) 以獲取詳細信息。
 | `poweredBy` | Boolean | `true` | 是否顯示技術支持。
 | `readingTime` | Boolean | `true` | 是否顯示閱讀時間
@@ -83,10 +86,12 @@ aliases = [
 | `tagCount` | Integer/Boolean | `10` | 標簽數，`false` 則隱藏。
 | `seriesCount` | Integer/Boolean | `10` | 專欄數，`false` 則隱藏。
 | `taxonomyPaginate` | Integer | `10` |
+| `taxonomySortingMethod` | String | - | 分類排序方式，默認以字母排序。可選值：`popularity`.
 | `taxonomyPostCount` | Integer | `3` | 分類的列表文章數，`false` 則隱藏。
 | `countTaxonomyPosts` | Boolean | `false` | 是否顯示分類的文章總數。
 | `sidebarTaxonomies` | Array | `["series", "categories", "tags"]` | 側邊欄的分類。
-| `fullWidth` | Boolean | `false` | 是否全寬
+| `fullWidth` | Boolean/Object | `false` | 是否全寬
+| `fullWidth.{section}` | Boolean | - | 爲特定的 section 定義全寬，如：`posts`, `docs`。
 | `fixedHeader` | Boolean | `true` | 是否固定頭部
 | `reward` | Object | - | [打賞小部件]({{< ref "/docs/widgets/reward" >}})，又稱 Buy Me a Coffee 小部件。
 | `share` | Object | - | 分享按鈕
@@ -134,13 +139,23 @@ aliases = [
 | `post.excerptMaxLength` | Integer | `320` | 
 | `post.copyright` | Boolean | `true` | 是否在每個帖子上顯示版權部分
 | `post.plainifyExcerpt` | Boolean | `true` | `false` 則格式化摘要為 HTML。
+| `post.featuredImage` | Boolean | `false` | 於內容上方顯示 Featured 圖片。
+| `post.numberifyHeadings` | Boolean | `false` | 是否自動對標題進行編號。
+| `post.numberifyHeadingsEndLevel` | Number | `6` | 自動編號的深度。
+| `post.numberifyHeadingsSeparator` | String | - | 編號和標題之間的分隔符。
+| `post.tocStyleType` | String | `none` | 目錄的 `list-style-type` CSS 屬性。
 | `viewer` | Boolean | true | [圖片查看器]({{< ref "docs/image-viewer" >}})
 | `pwa` | Object | - | [漸進式 web 應用]({{< ref "/docs/pwa" >}})
+| **Sidebar**
+| `sidebar` | Object | - |
+| `sidebar.fixed` | Boolean | `false` | 固定默認側邊欄。
+| `sidebar.archive` | Boolean | `true` | 於側邊欄顯示歸檔掛件。
 | **Meta Tag**
 | `metaRobots` | String | - | 空字符串表示禁用。
 | `contact` | Object | - | [聯系表單]({{< ref "docs/layouts/contact-form" >}})
 | `pinnedPost` | Boolean | `true` | 開啟/禁用文章置頂。
 | `pinnedPostCount` | Integer | `1` | 置頂的文章數量。
+| `rss` | String/Boolean | `true` | 在社交鏈接中顯示 RSS 鏈接。`false` 為不顯示，`home` 則總是鏈接到主頁。
 
 > 除了 Google 站長工具外，其他搜索引擎站長工具無法與 `hugo --minify` 同時使用，這是因為它們無法識別優化後的元標簽。
 
@@ -163,6 +178,7 @@ aliases = [
 | `readingTime` | Boolean | `true` | 是否顯示閱讀時間
 | `postDate` | Boolean | `true` | 是否顯示發表日期
 | `copyright` | Boolean | `true` | 是否顯示版權部分
+| `carousel` | Boolean | `false` | 是否在 Carousel 顯示
 | **Creative Commons License**
 | `creativeCommons` | Object | - |
 | `creativeCommons.by` | Boolean | `true` | 署名
@@ -172,3 +188,6 @@ aliases = [
 | **Meta Tag**
 | `metaRobots` | String | - | 空字符串表示禁用。
 | `pinned` | Boolean | `false` | 置頂文章。
+| `featuredPostCount` | Integer/Boolean | `5` | 精選文章數，`false` 則隱藏。
+| `recentPostCount` | Integer/Boolean | `5` | 最近文章數，`false` 則隱藏。
+| `relatedPostCount` | Integer/Boolean | `5` | 相關文章數，`false` 則隱藏。

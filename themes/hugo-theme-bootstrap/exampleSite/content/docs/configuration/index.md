@@ -15,7 +15,7 @@ series = [
   "Docs"
 ]
 images = []
-weight = 990
+weight = 980
 aliases = [
   "/en/posts/configuration"
 ]
@@ -59,9 +59,11 @@ See also [All Configuration Settings](https://gohugo.io/getting-started/configur
 | `mainSections` | Array | `["posts"]` | Main sections
 | `titleCase` | Boolean | `false` | Capitalized title or not
 | `titleSeparator` | String | `-` | Title separator
+| `backgroundImage` | Array | `[]` | Background image, such as `['/images/bg.png']`, `['/images/bg-light.png', '/images/bg-dark.png']`.
 | `comment` | Boolean | `true` | Whether to enable comments
 | `toc` | Boolean | `true` | Whether to enable TOC
 | `tocWordCount` | Integer | `280` | TOC is displayed only if the post's word count is greater than this value.
+| `tocPosition` | String | `sidebar` | Available values: `sidebar` and `content`, only the `posts` layout is affected.
 | `breadcrumb` | Boolean | `true` | Whether to enable breadcrumb
 | `dateFormat` | String | `Jan 2, 2006` | Date format. Checkout the [Hugo Date and Time Templating Reference](https://gohugo.io/functions/format/#hugo-date-and-time-templating-reference) for details.
 | `poweredBy` | Boolean | `true` | Whether to show powered by.
@@ -84,9 +86,11 @@ See also [All Configuration Settings](https://gohugo.io/getting-started/configur
 | `seriesCount` | Integer | `10` | The number of series shown in sidebar.
 | `taxonomyPaginate` | Integer | `10` |
 | `taxonomyPostCount` | Integer | `3` | The number of taxonomy's posts. Turn off by setting it to false.
+| `taxonomySortingMethod` | String | - | Sorting taxonomies by `popularity`, sort alphabetically by default.
 | `countTaxonomyPosts` | Boolean | `false` | Count posts of taxonomy.
 | `sidebarTaxonomies` | Array | `["series", "categories", "tags"]` | The taxonomies on the sidebar.
-| `fullWidth` | Boolean | `false` | Full width.
+| `fullWidth` | Boolean/Object | `false` | Full width.
+| `fullWidth.{section}` | Boolean | - | Specify the full width for particular sections, such as `posts`, `docs`.
 | `fixedHeader` | Boolean | `true` | Turn on/off fixed header.
 | `reward` | Object | - | [Reward Widget]({{< ref "/docs/widgets/reward" >}}), AKA Buy Me a Coffee Widget.
 | `share` | Object | - | Share buttons
@@ -132,13 +136,23 @@ See also [All Configuration Settings](https://gohugo.io/getting-started/configur
 | `post.excerptMaxLength` | Integer | `320` |
 | `post.copyright` | Boolean | `true` | Whether to display copyright section on each post.
 | `post.plainifyExcerpt` | Boolean | `true` | Format excerpt in HTML if `false`.
+| `post.featuredImage` | Boolean | `false` | Show the featured image above the content.
+| `post.numberifyHeadings` | Boolean | `false` | Count headings automatically.
+| `post.numberifyHeadingsEndLevel` | Number | `6` | The depth of headings to count.
+| `post.numberifyHeadingsSeparator` | String | - | The separator between of number and headings.
+| `post.tocStyleType` | String | `none` | The TOC's CSS `list-style-type` property.
 | `viewer` | Boolean | true | [Image Viewer]({{< ref "docs/image-viewer" >}})
 | `pwa` | Object | - | [Progressive Web Apps]({{< ref "/docs/pwa" >}})
+| **Sidebar**
+| `sidebar` | Object | - |
+| `sidebar.fixed` | Boolean | `false` | Fix default sidebar.
+| `sidebar.archive` | Boolean | `true` | Show the archive widget on the sidebar.
 | **Meta Tag**
 | `metaRobots` | String | - | Empty means that turn it off.
 | `contact` | Object | - | [Contact Form]({{< ref "docs/layouts/contact-form" >}})
 | `pinnedPost` | Boolean | `true` | Turn on/off pinned posts.
 | `pinnedPostCount` | Integer | `1` | The number of pinned posts.
+| `rss` | String/Boolean | `true` | Display the RSS button on the social links. Turn it off by `false`, link it to homepage all the times by setting it to `home`.
 
 > Except the Google webmaster tool, the other webmaster tools cannot work with `hugo --minify`, because they cannot recognize the minified meta tag.
 
@@ -157,9 +171,11 @@ See also [All Configuration Settings](https://gohugo.io/getting-started/configur
 | `diagram` | Boolean | `false` | Whether to enable diagram.
 | `reward` | Boolean | `true` | Whether to enable reward.
 | `breadcrumb` | Boolean | `true` | Whether to enable breadcrumb.
+| `breadcrumbDivider` | String | `/` | Breadcrumb divider.
 | `readingTime` | Boolean | `true` | Whether to display the reading time.
 | `postDate` | Boolean | `true` | Whether to display the post date in the post meta section.
 | `copyright` | Boolean | `true` | Whether to display copyright section.
+| `carousel` | Boolean | `false` | Show on carousel.
 | **Creative Commons License**
 | `creativeCommons` | Object | - |
 | `creativeCommons.by` | Boolean | `true` | Credit must be given to you, the creator.
@@ -169,3 +185,6 @@ See also [All Configuration Settings](https://gohugo.io/getting-started/configur
 | **Meta Tag**
 | `metaRobots` | String | - | Empty means that turn it off.
 | `pinned` | Boolean | `false` | Pinning posts.
+| `featuredPostCount` | Integer/Boolean | `5` | The number of featured posts shown in sidebar. Turn off by setting it to `false`.
+| `recentPostCount` | Integer/Boolean | `5` | The number of recent posts shown in sidebar. Turn off by setting it to `false`.
+| `relatedPostCount` | Integer/Boolean | `5` | The number of related posts. Turn off by setting it to `false`.

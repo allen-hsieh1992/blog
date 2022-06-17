@@ -10,6 +10,9 @@ other = "About Me"
 [alipay]
 other = "Alipay"
 
+[all]
+other = "All"
+
 [archives]
 other = "Archives"
 
@@ -152,6 +155,15 @@ other = "Recent Posts"
 [related_posts]
 other = "Related Posts"
 
+[repo_action_edit]
+other = "Edit this page"
+
+[repo_action_view]
+other = "View page source"
+
+[repo_title]
+other = "Repository"
+
 [search]
 other = "Search"
 
@@ -175,6 +187,9 @@ other = "Contents"
 
 [tags]
 other = "Tags"
+
+[tipeee]
+other = "Tipeee"
 
 [try_again]
 other = "Try again"

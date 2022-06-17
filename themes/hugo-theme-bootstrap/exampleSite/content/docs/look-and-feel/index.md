@@ -19,7 +19,7 @@ series = [
   "Docs"
 ]
 images = []
-weight = 980
+weight = 960
 aliases = [
   "/en/posts/look-and-feel"
 ]
@@ -34,20 +34,50 @@ However, the default scheme cannot satisfy everyone, but don't worry, you can ea
 
 <!--more-->
 
+## Background Image
+
+```toml {title="config/_default/params.toml"}
+# Use the same image on light and dark modes.
+backgroundImage = ['/images/bg.png']
+
+# Use different images on light and dark modes.
+backgroundImage = ['/images/bg-light.png', '/images/bg-dark.png']
+```
+
 ## Palettes
 
-The theme palettes system is based on CSS variable, therefore, we can easily custom the color per palette.
+HBS provides a plenty of palettes: `blue`, `blue-gray`, `brown`, `cyan`, `green`, `indigo`, `orange`, `pink`, `purple`, `red`, `teal`, `yellow`.
 
-Let's illustrate with an example.
+### Available Palettes
 
-```CSS
+The palette picker on the setting panel is based on the `palettes` parameter. 
+
+```toml {title="config/_default/params.toml"}
+palettes = ["blue", "blue-gray", "indigo"]
+```
+
+You can also disable the palette picker by setting the `palettes` parameter to an empty array `[]`.
+
+### Default Palette
+
+```toml {title="config/_default/params.toml"}
+palette = "indigo"
+```
+
+> You'll need to clear the browser cache after modifying the default palette.
+
+### Override Palette Color
+
+The palettes system is based on CSS variable, therefore, we can easily custom the color per palette.
+
+```scss {title="assets/main/scss/_custom.scss"}
 [data-palette=blue] {
-  --hbs-primary: darkblue;
-  --hbs-on-primary: #fff;
+    --#{$variable-prefix}primary: darkblue;
+    --#{$variable-prefix}on-primary: #fff;
 }
 ```
 
-After appending the style to `assets/css/custom.css`, the color of `blue` palette will be changed to `darkblue`.
+After appending the style to `assets/main/scss/_custom.scss`, the color of `blue` palette will be changed to `darkblue`.
 
 ## Fonts
 
@@ -55,21 +85,14 @@ After appending the style to `assets/css/custom.css`, the color of `blue` palett
 
 We don't specify any font, so that `system-ui` will be used in most browsers.
 
-You can use other web fonts easilly, such as [Google Fonts](https://fonts.google.com/). Lets take the Roboto font as an exmaple.
+You can use other web fonts easily, such as [Google Fonts](https://fonts.google.com/). Lets take the Roboto font as an example.
 
-First of all, we import the font by `customCSS`:
+First of all, we import the font, and then override the `body-font-family` variable in `assets/main/scss/_custom.scss`:
 
-```
-customCSS = [
-  "https://fonts.googleapis.com/css2?family=Roboto&display=swap"
-]
-```
-
-And then override the `--hbs-body-font-family` variable in `assets/css/custom.css`:
-
-```CSS
+```scss {title="assets/main/scss/_custom.scss"}
+@import 'https://fonts.googleapis.com/css2?family=Roboto&display=swap';
 :root {
-  --hbs-body-font-family: 'Roboto', sans-serif;
+    --#{$variable-prefix}body-font-family: 'Roboto', sans-serif;
 }
 ```
 
@@ -86,64 +109,22 @@ See also [Configure Highlight](https://gohugo.io/getting-started/configuration-m
 ### Style
 
 ```shell
-$ hugo gen chromastyles --style=solarized-dark > assets/css/highlight.css
+$ hugo gen chromastyles --style=solarized-dark > assets/main/scss/_highlight.scss
 ```
 
 See also [All Supported Styles](https://xyproto.github.io/splash/docs/all.html).
 
 ## Icons
 
-We're using a custom [Font Awesome](https://fontawesome.com/) icon set, in order to reduce the file size of icons.
-Because of this, you are free to choose other icons.
+```js {title="assets/icons/custom.js"}
+// import { faClock } from '@fortawesome/free-solid-svg-icons';
+// import { faAddressBook } from '@fortawesome/free-regular-svg-icons';
+// import { faAmazon, faGoogle } from '@fortawesome/free-brands-svg-icons';
 
-### Font Awesome
-
-#### Custom Build
-
-> This section contains front-end technologies, such as `JavaScript` and `npm`.
-
-We provided a file called `assets/js/icons.js` for customizing icons, therefore, you can add icons as needed.
-We already set up e build environment in the example site for you.
-
-1. Install Dependencies
-
-```shell
-$ npm install
+const icons = [
+    // faClock,
+    // faAddressBook,
+    // faAmazon, faGoogle,
+];
+export default icons;
 ```
-
-2. Add icons into `src/icons/index.js`:
-
-```js
-import { faGlobe, faClock } from '@fortawesome/free-solid-svg-icons';
-
-library.add(faGlobe, faClock);
-```
-
-3. Rebuild `assets/js/icons.js`:
-
-```shell
-$ npm run build
-```
-
-It's a recommended way to add icons if you're familiar to front-end development.
-
-#### CustomJS
-
-Since the theme using JS+SVG framework to replace icons to SVG, so the `customCSS` won't work, you need to use `customJS` instead. 
-
-```toml
-customJS = [
-  "https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/solid.min.js" # Import solid icons.
-  #"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/regular.min.js" # Import regular icons.
-  #"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/brands.min.js" # Import brand icons.
-  #"https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/js/all.min.js" # Import the full icon set.
-]
-```
-
-### Others
-
-The other icons can be imported by `customCSS`, `customJS` or [Hooks]({{< ref "/docs/hooks" >}}).
-
-- [Iconify](https://iconify.design/)
-- [Bootstrap Icons](https://icons.getbootstrap.com/)
-- [Material Design Icons](https://materialdesignicons.com/)

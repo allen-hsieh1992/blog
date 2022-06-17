@@ -16,3 +16,6 @@
 - [Benji Vesterby Tech Blog](https://benjiv.com)
 - [\[bronski.net\]](https://bronski.net/)
 - [iAmBenzo](https://iambenzo.com)
+- [Sagar Behere](https://sagar.se)
+- [Natenoms Blog](https://blog.natenom.com/)
+- [MiniLessons](https://sharp-lamport-ea92ad.netlify.app/)

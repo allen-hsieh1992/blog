@@ -10,7 +10,7 @@ categories = [
   "菜單"
 ]
 tags = [
-  "主菜單"
+  "主菜單",
   "頁腳菜單"
 ]
 series = [
@@ -20,6 +20,7 @@ images = []
 aliases = [
   "/zh-tw/posts/menu"
 ]
+weight = 970
 +++
 
 我們預定義了兩種類型的菜單：`main` 和 `footer`，分別表示頂部的應用程序欄菜單和頁腳菜單。
@@ -92,7 +93,7 @@ aliases = [
 [menu.footer]
   parent = "support"
   weight = 6
-  pre = '<i class="fas fa-fw fa-quetion-circle"></i>'
+  pre = '<i class="fas fa-fw fa-question-circle"></i>'
 ```
 
 代碼片段將頁面追加到 `main` 和 `footer` 菜單。

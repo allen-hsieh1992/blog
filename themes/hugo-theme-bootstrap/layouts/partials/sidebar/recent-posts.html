@@ -1,4 +1,4 @@
-{{- $count := default 5 .Site.Params.recentPostCount -}}
+{{- $count := default .Params.recentPostCount .Site.Params.recentPostCount -}}
 {{- $sections := .Site.Params.mainSections -}}
 {{- if in (slice "posts" "docs") .Type -}}
   {{- $sections = slice .Type -}}
@@ -10,7 +10,7 @@
   </div>
   <div class="card-body">
     <ul class="post-list">
-    {{- range first $count (where site.RegularPages "Type" "in" $sections) -}}
+    {{- range first $count (where site.RegularPages.ByDate.Reverse "Type" "in" $sections) -}}
       <li>
         <a href="{{ .Permalink }}">{{ partial "helpers/title" . }}</a>
       </li>

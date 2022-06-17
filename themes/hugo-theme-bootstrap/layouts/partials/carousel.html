@@ -1,0 +1,62 @@
+{{- $pages := first 3 (where $.Site.Pages "Params.carousel" true) -}}
+{{- if and .IsHome $pages (eq .Paginator.PageNumber 1) -}}
+<div class="container p-0 mb-4">
+    <div class="row p-0 m-0">
+        <div id="carouselHome" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators mb-0">
+            {{- $i := 0 -}}
+            {{- range $pages -}}
+                <button type="button" data-bs-target="#carouselHome" data-bs-slide-to="{{ $i }}" aria-label="{{ .Title }}"
+                {{ if eq $i 0 }}class="rounded-circle active" aria-current="true"{{ else }}class="rounded-circle"{{ end }}></button>
+                {{- $i = add $i 1 -}}
+            {{- end -}}
+            </div>
+            <div class="carousel-inner">
+            {{- $i := 0 -}}
+            {{- range $pages -}}
+                <a class="carousel-item{{ if eq $i 0 }} active{{ end }}" href="{{ .Permalink }}">
+                    {{- template "carousel-thumbnail" . -}}
+                    <div class="carousel-caption bottom-0 start-0 end-0">
+                        <h5>{{ .Title }}</h5>
+                    </div>
+                </a>
+                {{- $i = add $i 1 -}}
+            {{- end -}}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHome" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselHome" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+    </div>
+</div>
+{{- end -}}
+
+{{- define "carousel-thumbnail" -}}
+{{- $smallImageURL := "/images/none.png" -}}
+{{- $largeImageURL := "/images/none.png" -}}
+{{- $featured := false -}}
+{{ if .Params.images }}
+    {{ $smallImageURL = index .Params.images 0 | absURL }}
+    {{ $largeImageURL = $smallImageURL }}
+{{- else -}}
+  {{- $images := .Resources.ByType "image" -}}
+  {{- $featured = $images.GetMatch "*feature*" -}}
+  {{- if not $featured }}{{ $featured = $images.GetMatch "{*cover*,*thumbnail*}" }}{{ end -}}
+  {{- with $featured -}}
+    {{- $smallImage := $featured.Resize "x180" -}}
+    {{- $smallImageURL = $smallImage.Permalink -}}
+    {{- $largeImage := $featured.Resize "x320" -}}
+    {{- $largeImageURL = $largeImage.Permalink -}}
+  {{- end -}}
+{{- end -}}
+<picture>
+  <source srcset="{{ $smallImageURL }}" media="(max-width: 576px)">
+  <img class="d-block w-100" alt="{{ .Title }}" src="{{ $largeImageURL }}" loading="lazy"
+    {{ with $featured }} data-src="{{ .Permalink }}"{{ end }}/>
+</picture>
+{{- end -}}

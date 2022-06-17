@@ -10,7 +10,7 @@ categories = [
   "Menu"
 ]
 tags = [
-  "Main Menu"
+  "Main Menu",
   "Footer Menu"
 ]
 series = [
@@ -20,6 +20,7 @@ images = []
 aliases = [
   "/en/posts/menu"
 ]
+weight = 970
 +++
 
 We predefined two types of menus: `main` and `footer`, represents the top app bar menus and the footer menus, respectively.
@@ -92,7 +93,7 @@ We can also configure menu via page front matter.
 [menu.footer]
   parent = "support"
   weight = 6
-  pre = '<i class="fas fa-fw fa-quetion-circle"></i>'
+  pre = '<i class="fas fa-fw fa-question-circle"></i>'
 ```
 
 The code snippet appends the page to the `main` and `footer` menu.

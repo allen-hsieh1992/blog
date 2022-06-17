@@ -10,7 +10,7 @@ categories = [
   "菜单"
 ]
 tags = [
-  "主菜单"
+  "主菜单",
   "页脚菜单"
 ]
 series = [
@@ -20,6 +20,7 @@ images = []
 aliases = [
   "/zh-cn/posts/menu"
 ]
+weight = 970
 +++
 
 我们预定义了两种类型的菜单：`main` 和 `footer`，分别表示顶部的应用程序栏菜单和页脚菜单。
@@ -92,7 +93,7 @@ aliases = [
 [menu.footer]
   parent = "support"
   weight = 6
-  pre = '<i class="fas fa-fw fa-quetion-circle"></i>'
+  pre = '<i class="fas fa-fw fa-question-circle"></i>'
 ```
 
 代码片段将页面追加到 `main` 和 `footer` 菜单。

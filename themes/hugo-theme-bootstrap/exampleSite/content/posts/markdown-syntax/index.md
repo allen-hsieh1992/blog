@@ -4,6 +4,7 @@ title = "Markdown Syntax Guide"
 date = "2020-11-09"
 description = "Sample article showcasing basic Markdown syntax and formatting for HTML elements."
 featured = true
+carousel = true
 categories = [
 ]
 tags = [
@@ -80,7 +81,7 @@ Tables aren't part of the core Markdown spec, but Hugo supports supports them ou
 
 ### Code block with backticks
 
-```html
+```html {title="public/index.html"}
 <!doctype html>
 <html lang="en">
 <head>

@@ -79,3 +79,9 @@ github = "githubusername"
 | `discourse` | 論壇 URL |
 | `tiktok` | TikTok 使用者名稱 |
 | `pinterest` | Pinterest 使用者名稱 |
+| `mastodon` | Mastodon 使用者名稱 |
+| `liberapay` | Liberapay 使用者名稱 |
+| `paypal` | Paypal 使用者名稱 |
+| `patreon` | Patreon 使用者名稱 |
+| `tipeee` | Tipeee 使用者名稱 |
+| `rss` | 空字符串以禁用 RSS 链接 |

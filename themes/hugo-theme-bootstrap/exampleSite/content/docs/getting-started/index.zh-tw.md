@@ -7,14 +7,13 @@ toc = true
 reward = true
 pinned = true
 categories = [
-  ""
 ]
 tags = [
-  "安裝",
-  "升級"
+  "Installation",
+  "Prerequisites"
 ]
 series = [
-  "檔案"
+  "Docs"
 ]
 images = []
 weight = 1000
@@ -26,82 +25,38 @@ aliases = [
   weight = 1
 +++
 
-本文將介紹如何安裝、升級本主題，以及書寫新的文章。
+HBS(Hugo Bootstrap) 是一個快速、響應式和功能齊全的 Hugo 主題，可用於個人博客和文檔。
+在安裝主題前，請確保你[滿足先決條件](#先決條件)。
 
-<!--more-->
+## 先決條件
 
-## 安裝
+### Configuration
 
-> 要求 Hugo `0.75.0` 或者更高版本。
+自 `0.68.0`，HBS 要求設置以下配置。
 
-### 從頭開始創建站點
+{{< code-toggle filename="config" >}}
+[build]
+  writeStats = true
+{{</ code-toggle >}}
 
-```shell
-$ hugo new site myblog
-$ cd myblog
-$ git init
-$ git submodule add https://github.com/razonyang/hugo-theme-bootstrap themes/hugo-theme-bootstrap
-$ cp -a themes/hugo-theme-bootstrap/exampleSite/* .
-$ hugo server
-```
+### 構建工具
 
-> 如果你使用的是 Windows，請改用 `xcopy .\themes\hugo-theme-bootstrap\exampleSite /E`。
+- [Git](https://git-scm.com/downloads)。
+- [Hugo](https://gohugo.io/getting-started/installing/)：**extended** `0.84.0` 版本或以上。
+- [npm](https://nodejs.org/en/download/)：用於安裝 CSS 和 JS  依賴。
+- [Go](https://go.dev/dl/): `1.12` 版本或以上，僅當安裝為 [Hugo Module]({{< ref "/docs/installation/hugo-module" >}}) 時必須。
 
-### 安裝到已有站點
+> 我們建議使用這些工具的最新版本。
 
-```shell
-$ cd myblog
-$ git submodule add https://github.com/razonyang/hugo-theme-bootstrap themes/hugo-theme-bootstrap
-$ mkdir config
-$ cp -a themes/hugo-theme-bootstrap/exampleSite/config/* ./config
-$ cp -r themes/hugo-theme-bootstrap/exampleSite/content/about/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/archives/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/categories/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/contact/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/offline/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/search/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/series/ \
-  themes/hugo-theme-bootstrap/exampleSite/content/tags/ \
-  ./content
-$ hugo server
-```
+## 安裝方法
 
-> 如果你重新尅隆倉庫，你將需要通過 `git submodule update --init --recursive` 更新 submodule，或者 `git clone --recursive <repo>`。
-
-## 升級
-
-```shell
-$ cd themes/hugo-theme-bootstrap
-$ git fetch
-$ git checkout [version]
-$ cd ../../
-$ git add themes/hugo-theme-bootstrap
-$ git commit -m 'Upgrade the theme'
-```
-
-- 將 `[version]` 替換為最新的版本。所有版本可以通過 `git tag -l | sort -rV` 列出。
-- 你也可以直接使用 `master` 分支以獲取最新的提交。
-
-## 書寫文章
-
-> 假設默認語言為 `en`。
-
-```shell
-$ hugo new posts/new-post/index.md
-```
-
-上述命令創建了一篇英文文章，同樣的，我們也可以創建一篇簡體中文的文章：
-
-```shell
-$ hugo new posts/new-post/index.zh-cn.md
-```
-
-> 請注意：創建的文章一般處於草稿狀態，本地預覽時，`hugo server` 需要指定 `-D` 參數才能預覽草稿文章。文章發佈時，需要將 `draft` 改為 `false`，或者直接移除 `draft` 參數。
-
-> 你可以將文章放在任何地方，比如 `blog`，只需要將 `blog` 附加到 `mainSections` 參數：`mainSections = ["posts", "blog"]`。
+- [Install via Starter Template](https://github.com/razonyang/hugo-theme-bootstrap-skeleton): **Recommended**.
+- [Install via Git Submodule]({{< ref "/docs/installation/git-submodule" >}}).
+- [Install via Hugo Module]({{< ref "/docs/installation/hugo-module" >}}).
 
 ## 下一步
 
 - [調整配置]({{< ref "/docs/configuration" >}})
 - [菜單]({{< ref "/docs/menu" >}})
 - [觀感]({{< ref "/docs/look-and-feel" >}})
+- [添加內容]({{< ref "/docs/content" >}})

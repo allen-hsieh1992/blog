@@ -1,18 +1,18 @@
 +++
 title = "Git 是如何運作的"
 author = "Allen Hsieh"
-description = ""
+description = "使用 Git 當作 Soruce Control 也有一段時間了，但以前都只是基本的了解 Git 基本使用，並沒有深入了解 Git 後面實作原理。最近在 Pluralsight 上看到 Paolo Perrotta 講解 Git 是如何運作的，覺得講得不錯~這邊也算是將這次吸收到的知識做個筆記。"
 featured = true
-categories = ["CONTAINER"]
+categories = ["TOOLS"]
 tags = [
-    "Docker"
+    "Git"
 ]
-date = "2022-01-28"
+date = "2022-03-02"
 aliases = ["how_git_works"]
-images = ["images/docker.png"]
+images = ["images/git.png"]
 +++
 
-使用 Git 當作 Soruce Control 也有一段時間了，但以前都只是基本的了解 Git 基本使用，並沒有深入了解 Git 後面實作原理。最近在 Pluralsight 上看到 Paolo Perrotta 講解 Git 是如何運作的，覺得講得不錯。這邊也算是將這次吸收到的知識做個筆記。
+使用 Git 當作 Soruce Control 也有一段時間了，但以前都只是基本的了解 Git 基本使用，並沒有深入了解 Git 後面實作原理。最近在 Pluralsight 上看到 Paolo Perrotta 講解 Git 是如何運作的，覺得講得不錯~ 這邊也算是將這次吸收到的知識做個筆記。
 
 
 ## Git Databases
@@ -627,10 +627,23 @@ $ tree .git/refs/remotes
  
 現在我們嘗試在local 加一些commit 
 
-```
+```Bash
+## before commit
 $ git show-ref master
 10275a905f41267b2b2a12f5cd3e3cbee984203a refs/heads/master
 10275a905f41267b2b2a12f5cd3e3cbee984203a refs/remotes/origin/master
 
-$
+## after commit
+$ git show-ref master
+1251ab4bdd68fdf8a3175719f47565b6c8af44d2 refs/heads/master
+10275a905f41267b2b2a12f5cd3e3cbee984203a refs/remotes/origin/master
 
+## after push
+$ git show-ref master
+1251ab4bdd68fdf8a3175719f47565b6c8af44d2 refs/heads/master
+1251ab4bdd68fdf8a3175719f47565b6c8af44d2 refs/remotes/origin/master
+```
+
+* line2: line2 我們可以看到在 commit 之前 local & remote 的 master 都是同一個物件。
+* line7: 當我們 local commit 以後，可以看到 local 的物件已經更新了，但 remote 還是舊的。
+* line12
