@@ -5,7 +5,7 @@ description = "There are n buildings in a line. You are given an integer array h
 featured = true
 categories = ["JAVA", "ALGORITHM"]
 tags = ["LEETCODE"]
-date = "2022-06-15"
+date = "2022-06-17"
 aliases = ["leetcode_1762_buildings_with_an_ocean_view"]
 images = ["images/leetcode.jpeg"]
 +++
